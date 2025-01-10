@@ -1,0 +1,1 @@
+export 'package:ejemplo_de_pokedex/UI/widgets/result_card.dart';
