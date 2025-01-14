@@ -7,21 +7,16 @@ class GroupOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final menuGroupOption = GroupRoutes.menuGroupOption;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Text('Group', style: Theme.of(context).textTheme.headlineMedium, )
-        ),
-        ListView.separated(
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: ListView.builder(
           itemBuilder: (context, index) => ListTile(
             title: Text(menuGroupOption[index].name, style: Theme.of(context).textTheme.bodyMedium),
           ), 
-          separatorBuilder: (_, __) => Divider(), 
           itemCount: menuGroupOption.length
         ),
-      ],
+      ),
     );
   }
 }
