@@ -1,3 +1,4 @@
+import 'package:ejemplo_de_pokedex/UI/routes/group_routes.dart';
 import 'package:flutter/material.dart';
 
 class GroupOption extends StatelessWidget {
@@ -5,6 +6,7 @@ class GroupOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final menuGroupOption = GroupRoutes.menuGroupOption;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,9 +24,11 @@ class GroupOption extends StatelessWidget {
             borderRadius: BorderRadius.circular(10)
           ),
           child: ListView.separated(
-            itemBuilder: itemBuilder, 
-            separatorBuilder: separatorBuilder, 
-            itemCount: itemCount
+            itemBuilder: (context, index) => ListTile(
+              title: Text(menuGroupOption[index].name, style: Theme.of(context).textTheme.bodyMedium),
+            ), 
+            separatorBuilder: (_, __) => Divider(), 
+            itemCount: menuGroupOption.length
           ),
         ),
       ],
