@@ -21,6 +21,11 @@ class GroupOption extends StatelessWidget {
             color: Colors.red,
             borderRadius: BorderRadius.circular(10)
           ),
+          child: ListView.separated(
+            itemBuilder: itemBuilder, 
+            separatorBuilder: separatorBuilder, 
+            itemCount: itemCount
+          ),
         ),
       ],
     );
