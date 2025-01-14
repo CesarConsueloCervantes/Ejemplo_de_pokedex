@@ -1,1 +1,2 @@
+export 'package:ejemplo_de_pokedex/UI/widgets/group_option.dart';
 export 'package:ejemplo_de_pokedex/UI/widgets/result_card.dart';
