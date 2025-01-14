@@ -1,3 +1,4 @@
+import 'package:ejemplo_de_pokedex/UI/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,12 +12,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container( // Search By Group
-          margin: EdgeInsets.symmetric(horizontal: 10),
-            width: double.infinity,
-            height: 70,
-            color: Colors.red,
-          ),
+          GroupOption()
         ],
       ),
     );
