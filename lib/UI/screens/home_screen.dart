@@ -9,6 +9,16 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Screen'),
       ),
+      body: Column(
+        children: [
+          Container( // Search By Group
+          margin: EdgeInsets.symmetric(horizontal: 10),
+            width: double.infinity,
+            height: 70,
+            color: Colors.red,
+          ),
+        ],
+      ),
     );
   }
 }
