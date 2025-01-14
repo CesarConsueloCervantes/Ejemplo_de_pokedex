@@ -5,6 +5,14 @@ class GroupOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Text('Group', style: Theme.of(context).textTheme.headlineMedium, )
+        ),
+      ],
+    );
   }
 }
