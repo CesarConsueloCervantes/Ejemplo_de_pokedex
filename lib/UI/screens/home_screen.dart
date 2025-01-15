@@ -10,10 +10,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Screen'),
       ),
-      body: Column(
-        children: [
-          GroupOption()
-        ],
+      body: Container(
+        margin: EdgeInsets.only(left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Grupos', style: Theme.of(context).textTheme.headlineSmall),
+            GroupOption(),
+            Text('Grupos 2', style: Theme.of(context).textTheme.headlineSmall),
+            GroupOption(),        
+          ],
+        ),
       ),
     );
   }
