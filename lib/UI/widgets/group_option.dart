@@ -1,5 +1,4 @@
 import 'package:ejemplo_de_pokedex/UI/routes/group_routes.dart';
-import 'package:ejemplo_de_pokedex/UI/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class GroupOption extends StatelessWidget {
@@ -22,7 +21,7 @@ class GroupOption extends StatelessWidget {
             ),
             child:Text(menuGroupOption[index].name, style: Theme.of(context).textTheme.bodyLarge),
             ),
-            onTap: () => ResultsScreen(),
+            onTap: () => Navigator.pushNamed(context, 'results'),
           ),
         itemCount: menuGroupOption.length
       ),
