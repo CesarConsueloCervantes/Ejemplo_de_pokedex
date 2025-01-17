@@ -5,6 +5,20 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Pokemon'),
+      ),
+      body: MediaQuery.removePadding(
+        context: context,
+         child: Column(
+           children: [
+            Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10010.png')),
+            Divider(),
+          ],
+        )
+      )
+    );
   }
 }
+
