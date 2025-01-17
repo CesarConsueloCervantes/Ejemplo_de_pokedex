@@ -1,3 +1,4 @@
+import 'package:ejemplo_de_pokedex/UI/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -34,17 +35,17 @@ class StatsPokemon extends StatelessWidget {
       children: [
         Column(
           children: [
-            Text('1234'),
-            Text('1234'),
-            Text('1234'),
+            StatsCard(),
+            StatsCard(),
+            StatsCard(),
           ],
         ),
         SizedBox(width: 10),
         Column(
           children: [
-            Text('1234'),
-            Text('1234'),
-            Text('1234'),
+            StatsCard(),
+            StatsCard(),
+            StatsCard(),
           ],
         )
       ],
