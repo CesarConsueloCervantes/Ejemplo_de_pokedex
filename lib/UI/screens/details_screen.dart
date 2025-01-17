@@ -15,6 +15,7 @@ class DetailsScreen extends StatelessWidget {
            children: [
             Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10010.png')),
             Divider(),
+            StatsPokemon()
           ],
         )
       )
@@ -22,3 +23,31 @@ class DetailsScreen extends StatelessWidget {
   }
 }
 
+class StatsPokemon extends StatelessWidget {
+  const StatsPokemon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Column(
+          children: [
+            Text('1234'),
+            Text('1234'),
+            Text('1234'),
+          ],
+        ),
+        SizedBox(width: 10),
+        Column(
+          children: [
+            Text('1234'),
+            Text('1234'),
+            Text('1234'),
+          ],
+        )
+      ],
+    );
+  }
+}
