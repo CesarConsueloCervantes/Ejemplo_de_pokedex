@@ -23,7 +23,7 @@ class ResultCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('N.° $index', style: Theme.of(context).textTheme.headlineSmall),
-          Text('option $index', style: Theme.of(context).textTheme.bodyLarge),
+          Text('option $index', style: Theme.of(context).textTheme.headlineMedium),
         //Text('Fletchinderssssssssssssssssssssssssssssssssssssssssssssss $index', style: Theme.of(context).textTheme.bodyLarge),
         ],
       )
