@@ -17,6 +17,17 @@ class StatsCard extends StatelessWidget {
       ),
       child: Row(
         children: [
+          Container(
+            alignment: AlignmentDirectional.center,
+            height: 40,
+            width: 150,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(10)
+            ),
+            child: Text(statname, style: Theme.of(context).textTheme.headlineSmall),
+          ),
+          Text(stat, style: Theme.of(context).textTheme.headlineSmall)
         ],
       ),
     );
