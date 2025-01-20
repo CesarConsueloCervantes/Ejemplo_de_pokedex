@@ -9,9 +9,15 @@ class StatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40,
+      width: 200,
       decoration: BoxDecoration(
-        color: color,
-        
+        border: Border.all(width: 1),
+        borderRadius: BorderRadius.circular(10)
+      ),
+      child: Row(
+        children: [
+        ],
       ),
     );
   }
