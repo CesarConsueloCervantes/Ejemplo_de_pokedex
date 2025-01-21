@@ -16,7 +16,17 @@ class MoveCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10)
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text('Menacing Moonraz Maelstrom', style: Theme.of(context).textTheme.headlineSmall),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 10,
+            children: [
+              Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png'))
+
+            ],
+          )
         ],
       ),
     );
