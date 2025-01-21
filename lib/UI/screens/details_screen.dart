@@ -35,17 +35,17 @@ class StatsPokemon extends StatelessWidget {
       children: [
         Column(
           children: [
-            StatsCard(statname: 'HP', stat: '123', color: Colors.lightGreenAccent),
-            StatsCard(statname: 'Atack', stat: '12', color: Colors.red),
-            StatsCard(statname: 'Defence', stat: '23', color: Colors.blueAccent),
+            StatsCard(statname: 'HP', stat: '123', color: const Color.fromARGB(255, 255, 0, 0)),
+            StatsCard(statname: 'Atack', stat: '12', color: const Color.fromARGB(255, 240,128,48)),
+            StatsCard(statname: 'Defence', stat: '23', color: const Color.fromARGB(255, 248,208,48)),
           ],
         ),
         SizedBox(width: 10),
         Column(
           children: [
-            StatsCard(statname: 'Speed', stat: '56', color: Colors.purple),
-            StatsCard(statname: 'S-Atack', stat: '34', color: Colors.orange),
-            StatsCard(statname: 'S-Defence', stat: '45', color: Colors.lightBlueAccent),
+            StatsCard(statname: 'S-Atack', stat: '34', color: const Color.fromARGB(255, 104,144,240)),
+            StatsCard(statname: 'S-Defence', stat: '45', color: const Color.fromARGB(255, 120,200,80)),
+            StatsCard(statname: 'Speed', stat: '56', color: const Color.fromARGB(255, 248,88,136)),
           ],
         )
       ],
