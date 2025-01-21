@@ -22,13 +22,18 @@ class MoveCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 10,
-            children: [
-              Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png'))
-
-            ],
+            children: getImages(index),
           )
         ],
       ),
     );
   }
+}
+
+List<Widget> getImages(int index) {
+  List<Widget> _images = [];
+  _images.add(Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png')));
+  //TODO poner Types.leng != 2
+  if(index==2||index==4) _images.add(Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png')));
+  return _images;
 }
