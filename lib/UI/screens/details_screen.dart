@@ -15,8 +15,8 @@ class DetailsScreen extends StatelessWidget {
          child: Column(
            children: [
             Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10010.png')),
-            Divider(),
-            StatsPokemon()
+            StatsPokemon(),
+            SetMoves()
           ],
         )
       )
@@ -31,24 +31,43 @@ class StatsPokemon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Column(
+        Divider(),
+        Text('Base Stats',style: Theme.of(context).textTheme.displayMedium),
+        Row(
           children: [
-            StatsCard(statname: 'HP', stat: '123', color: const Color.fromARGB(255, 255, 0, 0)),
-            StatsCard(statname: 'Atack', stat: '12', color: const Color.fromARGB(255, 240,128,48)),
-            StatsCard(statname: 'Defence', stat: '23', color: const Color.fromARGB(255, 248,208,48)),
+            Column(
+              children: [
+                StatsCard(statname: 'HP', stat: '123', color: const Color.fromARGB(255, 255, 0, 0)),
+                StatsCard(statname: 'Atack', stat: '12', color: const Color.fromARGB(255, 240,128,48)),
+                StatsCard(statname: 'Defence', stat: '23', color: const Color.fromARGB(255, 248,208,48)),
+              ],
+            ),
+            SizedBox(width: 10),
+            Column(
+              children: [
+                StatsCard(statname: 'S-Atack', stat: '34', color: const Color.fromARGB(255, 104,144,240)),
+                StatsCard(statname: 'S-Defence', stat: '45', color: const Color.fromARGB(255, 120,200,80)),
+                StatsCard(statname: 'Speed', stat: '56', color: const Color.fromARGB(255, 248,88,136)),
+              ],
+            )
           ],
         ),
-        SizedBox(width: 10),
-        Column(
-          children: [
-            StatsCard(statname: 'S-Atack', stat: '34', color: const Color.fromARGB(255, 104,144,240)),
-            StatsCard(statname: 'S-Defence', stat: '45', color: const Color.fromARGB(255, 120,200,80)),
-            StatsCard(statname: 'Speed', stat: '56', color: const Color.fromARGB(255, 248,88,136)),
-          ],
-        )
+        SizedBox(height: 10,),
+        Divider(),
       ],
     );
+  }
+}
+
+class SetMoves extends StatelessWidget {
+  const SetMoves({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap();
   }
 }
