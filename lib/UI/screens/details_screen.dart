@@ -70,7 +70,15 @@ class SetMoves extends StatelessWidget {
     return Column(
       children: [
         Text('Set Moves',style: Theme.of(context).textTheme.displayMedium),
-        
+        SizedBox(
+          height: 700,
+          child: ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              title: MoveCard(index: index,),
+            ),
+            itemCount: 20,
+          ),
+        )
       ],
     );
   }
