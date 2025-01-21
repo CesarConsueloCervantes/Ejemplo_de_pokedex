@@ -12,9 +12,10 @@ class DetailsScreen extends StatelessWidget {
       ),
       body: MediaQuery.removePadding(
         context: context,
+        removeBottom: true,
          child: Column(
            children: [
-            Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10010.png')),
+            Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10050.png')),
             StatsPokemon(),
             SetMoves()
           ],
@@ -68,6 +69,11 @@ class SetMoves extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap();
+    return Column(
+      children: [
+        Text('Set Moves',style: Theme.of(context).textTheme.displayMedium),
+        
+      ],
+    );
   }
 }
