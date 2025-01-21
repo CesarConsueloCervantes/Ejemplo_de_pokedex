@@ -10,9 +10,7 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Pokemon'),
       ),
-      body: MediaQuery.removePadding(
-        context: context,
-        removeBottom: true,
+      body: SingleChildScrollView(
          child: Column(
            children: [
             Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10050.png')),
