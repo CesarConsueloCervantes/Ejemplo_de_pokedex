@@ -4,15 +4,17 @@
 
 import 'dart:convert';
 
+import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
+
 Type typeFromJson(String str) => Type.fromJson(json.decode(str));
 
 class Type {
     DamageRelations damageRelations;
     List<GameIndex> gameIndices;
-    Generation generation;
+    NameUrl generation;
     int id;
-    Generation moveDamageClass;
-    List<Generation> moves;
+    NameUrl moveDamageClass;
+    List<NameUrl> moves;
     String name;
     List<Name> names;
     List<dynamic> pastDamageRelations;
@@ -36,10 +38,10 @@ class Type {
     factory Type.fromJson(Map<String, dynamic> json) => Type(
         damageRelations: DamageRelations.fromJson(json["damage_relations"]),
         gameIndices: List<GameIndex>.from(json["game_indices"].map((x) => GameIndex.fromJson(x))),
-        generation: Generation.fromJson(json["generation"]),
+        generation: NameUrl.fromJson(json["generation"]),
         id: json["id"],
-        moveDamageClass: Generation.fromJson(json["move_damage_class"]),
-        moves: List<Generation>.from(json["moves"].map((x) => Generation.fromJson(x))),
+        moveDamageClass: NameUrl.fromJson(json["move_damage_class"]),
+        moves: List<NameUrl>.from(json["moves"].map((x) => NameUrl.fromJson(x))),
         name: json["name"],
         names: List<Name>.from(json["names"].map((x) => Name.fromJson(x))),
         pastDamageRelations: List<dynamic>.from(json["past_damage_relations"].map((x) => x)),
@@ -49,12 +51,12 @@ class Type {
 }
 
 class DamageRelations {
-    List<Generation> doubleDamageFrom;
+    List<NameUrl> doubleDamageFrom;
     List<dynamic> doubleDamageTo;
     List<dynamic> halfDamageFrom;
-    List<Generation> halfDamageTo;
-    List<Generation> noDamageFrom;
-    List<Generation> noDamageTo;
+    List<NameUrl> halfDamageTo;
+    List<NameUrl> noDamageFrom;
+    List<NameUrl> noDamageTo;
 
     DamageRelations({
         required this.doubleDamageFrom,
@@ -66,33 +68,18 @@ class DamageRelations {
     });
 
     factory DamageRelations.fromJson(Map<String, dynamic> json) => DamageRelations(
-        doubleDamageFrom: List<Generation>.from(json["double_damage_from"].map((x) => Generation.fromJson(x))),
+        doubleDamageFrom: List<NameUrl>.from(json["double_damage_from"].map((x) => NameUrl.fromJson(x))),
         doubleDamageTo: List<dynamic>.from(json["double_damage_to"].map((x) => x)),
         halfDamageFrom: List<dynamic>.from(json["half_damage_from"].map((x) => x)),
-        halfDamageTo: List<Generation>.from(json["half_damage_to"].map((x) => Generation.fromJson(x))),
-        noDamageFrom: List<Generation>.from(json["no_damage_from"].map((x) => Generation.fromJson(x))),
-        noDamageTo: List<Generation>.from(json["no_damage_to"].map((x) => Generation.fromJson(x))),
-    );
-}
-
-class Generation {
-    String name;
-    String url;
-
-    Generation({
-        required this.name,
-        required this.url,
-    });
-
-    factory Generation.fromJson(Map<String, dynamic> json) => Generation(
-        name: json["name"],
-        url: json["url"],
+        halfDamageTo: List<NameUrl>.from(json["half_damage_to"].map((x) => NameUrl.fromJson(x))),
+        noDamageFrom: List<NameUrl>.from(json["no_damage_from"].map((x) => NameUrl.fromJson(x))),
+        noDamageTo: List<NameUrl>.from(json["no_damage_to"].map((x) => NameUrl.fromJson(x))),
     );
 }
 
 class GameIndex {
     int gameIndex;
-    Generation generation;
+    NameUrl generation;
 
     GameIndex({
         required this.gameIndex,
@@ -101,12 +88,12 @@ class GameIndex {
 
     factory GameIndex.fromJson(Map<String, dynamic> json) => GameIndex(
         gameIndex: json["game_index"],
-        generation: Generation.fromJson(json["generation"]),
+        generation: NameUrl.fromJson(json["generation"]),
     );
 }
 
 class Name {
-    Generation language;
+    NameUrl language;
     String name;
 
     Name({
@@ -115,13 +102,13 @@ class Name {
     });
 
     factory Name.fromJson(Map<String, dynamic> json) => Name(
-        language: Generation.fromJson(json["language"]),
+        language: NameUrl.fromJson(json["language"]),
         name: json["name"],
     );
 }
 
 class Pokemon {
-    Generation pokemon;
+    NameUrl pokemon;
     int slot;
 
     Pokemon({
@@ -130,7 +117,7 @@ class Pokemon {
     });
 
     factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
-        pokemon: Generation.fromJson(json["pokemon"]),
+        pokemon: NameUrl.fromJson(json["pokemon"]),
         slot: json["slot"],
     );
 }
