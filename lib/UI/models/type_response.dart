@@ -4,13 +4,15 @@
 
 import 'dart:convert';
 
+import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
+
 TypeResponse typeResponseFromJson(String str) => TypeResponse.fromJson(json.decode(str));
 
 class TypeResponse {
     int count;
     dynamic next;
     dynamic previous;
-    List<Result> results;
+    List<NameUrl> results;
 
     TypeResponse({
         required this.count,
@@ -23,21 +25,6 @@ class TypeResponse {
         count: json["count"],
         next: json["next"],
         previous: json["previous"],
-        results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
-    );
-}
-
-class Result {
-    String name;
-    String url;
-
-    Result({
-        required this.name,
-        required this.url,
-    });
-
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
-        name: json["name"],
-        url: json["url"],
+        results: List<NameUrl>.from(json["results"].map((x) => NameUrl.fromJson(x))),
     );
 }
