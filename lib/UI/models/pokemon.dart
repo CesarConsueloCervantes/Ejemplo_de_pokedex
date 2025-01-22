@@ -4,13 +4,15 @@
 
 import 'dart:convert';
 
+import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
+
 Pokemon pokemonFromJson(String str) => Pokemon.fromJson(json.decode(str));
 
 class Pokemon {
     List<Ability> abilities;
     int baseExperience;
-    Cries cries;
-    List<Species> forms;
+    NameUrl cries;
+    List<NameUrl> forms;
     List<GameIndex> gameIndices;
     int height;
     List<HeldItem> heldItems;
@@ -22,7 +24,7 @@ class Pokemon {
     int order;
     List<dynamic> pastAbilities;
     List<dynamic> pastTypes;
-    Species species;
+    NameUrl species;
     Sprites sprites;
     List<Stat> stats;
     List<Type> types;
@@ -54,8 +56,8 @@ class Pokemon {
     factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
         abilities: List<Ability>.from(json["abilities"].map((x) => Ability.fromJson(x))),
         baseExperience: json["base_experience"],
-        cries: Cries.fromJson(json["cries"]),
-        forms: List<Species>.from(json["forms"].map((x) => Species.fromJson(x))),
+        cries: NameUrl.fromJson(json["cries"]),
+        forms: List<NameUrl>.from(json["forms"].map((x) => NameUrl.fromJson(x))),
         gameIndices: List<GameIndex>.from(json["game_indices"].map((x) => GameIndex.fromJson(x))),
         height: json["height"],
         heldItems: List<HeldItem>.from(json["held_items"].map((x) => HeldItem.fromJson(x))),
@@ -67,7 +69,7 @@ class Pokemon {
         order: json["order"],
         pastAbilities: List<dynamic>.from(json["past_abilities"].map((x) => x)),
         pastTypes: List<dynamic>.from(json["past_types"].map((x) => x)),
-        species: Species.fromJson(json["species"]),
+        species: NameUrl.fromJson(json["species"]),
         sprites: Sprites.fromJson(json["sprites"]),
         stats: List<Stat>.from(json["stats"].map((x) => Stat.fromJson(x))),
         types: List<Type>.from(json["types"].map((x) => Type.fromJson(x))),
@@ -76,7 +78,7 @@ class Pokemon {
 }
 
 class Ability {
-    Species ability;
+    NameUrl ability;
     bool isHidden;
     int slot;
 
@@ -87,45 +89,15 @@ class Ability {
     });
 
     factory Ability.fromJson(Map<String, dynamic> json) => Ability(
-        ability: Species.fromJson(json["ability"]),
+        ability: NameUrl.fromJson(json["ability"]),
         isHidden: json["is_hidden"],
         slot: json["slot"],
     );
 }
 
-class Species {
-    String name;
-    String url;
-
-    Species({
-        required this.name,
-        required this.url,
-    });
-
-    factory Species.fromJson(Map<String, dynamic> json) => Species(
-        name: json["name"],
-        url: json["url"],
-    );
-}
-
-class Cries {
-    String latest;
-    String legacy;
-
-    Cries({
-        required this.latest,
-        required this.legacy,
-    });
-
-    factory Cries.fromJson(Map<String, dynamic> json) => Cries(
-        latest: json["latest"],
-        legacy: json["legacy"],
-    );
-}
-
 class GameIndex {
     int gameIndex;
-    Species version;
+    NameUrl version;
 
     GameIndex({
         required this.gameIndex,
@@ -134,12 +106,12 @@ class GameIndex {
 
     factory GameIndex.fromJson(Map<String, dynamic> json) => GameIndex(
         gameIndex: json["game_index"],
-        version: Species.fromJson(json["version"]),
+        version: NameUrl.fromJson(json["version"]),
     );
 }
 
 class HeldItem {
-    Species item;
+    NameUrl item;
     List<VersionDetail> versionDetails;
 
     HeldItem({
@@ -148,14 +120,14 @@ class HeldItem {
     });
 
     factory HeldItem.fromJson(Map<String, dynamic> json) => HeldItem(
-        item: Species.fromJson(json["item"]),
+        item: NameUrl.fromJson(json["item"]),
         versionDetails: List<VersionDetail>.from(json["version_details"].map((x) => VersionDetail.fromJson(x))),
     );
 }
 
 class VersionDetail {
     int rarity;
-    Species version;
+    NameUrl version;
 
     VersionDetail({
         required this.rarity,
@@ -164,12 +136,12 @@ class VersionDetail {
 
     factory VersionDetail.fromJson(Map<String, dynamic> json) => VersionDetail(
         rarity: json["rarity"],
-        version: Species.fromJson(json["version"]),
+        version: NameUrl.fromJson(json["version"]),
     );
 }
 
 class Move {
-    Species move;
+    NameUrl move;
     List<VersionGroupDetail> versionGroupDetails;
 
     Move({
@@ -178,15 +150,15 @@ class Move {
     });
 
     factory Move.fromJson(Map<String, dynamic> json) => Move(
-        move: Species.fromJson(json["move"]),
+        move: NameUrl.fromJson(json["move"]),
         versionGroupDetails: List<VersionGroupDetail>.from(json["version_group_details"].map((x) => VersionGroupDetail.fromJson(x))),
     );
 }
 
 class VersionGroupDetail {
     int levelLearnedAt;
-    Species moveLearnMethod;
-    Species versionGroup;
+    NameUrl moveLearnMethod;
+    NameUrl versionGroup;
 
     VersionGroupDetail({
         required this.levelLearnedAt,
@@ -196,8 +168,8 @@ class VersionGroupDetail {
 
     factory VersionGroupDetail.fromJson(Map<String, dynamic> json) => VersionGroupDetail(
         levelLearnedAt: json["level_learned_at"],
-        moveLearnMethod: Species.fromJson(json["move_learn_method"]),
-        versionGroup: Species.fromJson(json["version_group"]),
+        moveLearnMethod: NameUrl.fromJson(json["move_learn_method"]),
+        versionGroup: NameUrl.fromJson(json["version_group"]),
     );
 }
 
@@ -543,7 +515,7 @@ class GenerationViii {
 class Stat {
     int baseStat;
     int effort;
-    Species stat;
+    NameUrl stat;
 
     Stat({
         required this.baseStat,
@@ -554,13 +526,13 @@ class Stat {
     factory Stat.fromJson(Map<String, dynamic> json) => Stat(
         baseStat: json["base_stat"],
         effort: json["effort"],
-        stat: Species.fromJson(json["stat"]),
+        stat: NameUrl.fromJson(json["stat"]),
     );
 }
 
 class Type {
     int slot;
-    Species type;
+    NameUrl type;
 
     Type({
         required this.slot,
@@ -569,6 +541,6 @@ class Type {
 
     factory Type.fromJson(Map<String, dynamic> json) => Type(
         slot: json["slot"],
-        type: Species.fromJson(json["type"]),
+        type: NameUrl.fromJson(json["type"]),
     );
 }
