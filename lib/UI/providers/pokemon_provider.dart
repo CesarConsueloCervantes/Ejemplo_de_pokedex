@@ -21,9 +21,28 @@ class PokemonProvider {
     page += 40;
 
     final List<NameUrl> nameUrlPokemons =pokemonResponse.results;
-    final List<Pokemon> pokemons ;
+    final List<Pokemon> pokemons = await convertNameUrltoPokemons(nameUrlPokemons);
 
     pokemonsOnDisplay=pokemons;
+    return pokemons;
+  }
+
+  Future<List<Pokemon>> convertNameUrltoPokemons(List<NameUrl> nameUrlPokemons) async {
+    List<Pokemon> pokemons = [];
+
+    var jsonData;
+
+    NameUrl nameUrlPokemon;
+    String namePokemon;
+    
+    for (var i = 0; i < nameUrlPokemons.length; i++) {
+      nameUrlPokemon = nameUrlPokemons[i];
+      namePokemon = nameUrlPokemon.name;
+
+      jsonData = await _getJsonData('pokemon/$namePokemon');
+      pokemons[i] = pokemonFromJson(jsonData);
+    }
+
     return pokemons;
   }
 }
