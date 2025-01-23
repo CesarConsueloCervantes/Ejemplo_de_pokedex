@@ -6,7 +6,7 @@ import 'dart:convert';
 
 import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
 
-PType PTypeFromJson(String str) => PType.fromJson(json.decode(str));
+PType pTypeFromJson(String str) => PType.fromJson(json.decode(str));
 
 class PType {
     DamageRelations damageRelations;
