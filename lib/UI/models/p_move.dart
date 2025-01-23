@@ -6,7 +6,7 @@ import 'dart:convert';
 
 import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
 
-PMove PMoveFromJson(String str) => PMove.fromJson(json.decode(str));
+PMove pMoveFromJson(String str) => PMove.fromJson(json.decode(str));
 
 class PMove {
     int? accuracy;
