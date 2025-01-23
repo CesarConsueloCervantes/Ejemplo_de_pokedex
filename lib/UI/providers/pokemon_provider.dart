@@ -34,7 +34,7 @@ class PokemonProvider {
     final pokemonMove = pokemonFromJson(jsonData);
 
     final List<Move> moves = pokemonMove.moves;
-    final List<PMove> pMoves ;
+    final List<PMove> pMoves = await convertMovesToPmoves(moves);
 
     pokemonMoves[namePokemon] = pMoves;
     return pMoves;
@@ -57,5 +57,23 @@ class PokemonProvider {
     }
 
     return pokemons;
+  }
+
+  Future<List<PMove>> convertMovesToPmoves(List<Move> moves) async {
+    List<PMove> pMoves = [];
+
+    var jsonData;
+    NameUrl pMove;
+    String nameMove;
+
+    for (var i = 0; i < moves.length; i++) {
+      pMove = moves[i].move;
+      nameMove = pMove.name;
+
+      jsonData = _getJsonData('move/$nameMove');
+      pMoves[i] = pMoveFromJson(jsonData);
+    }
+
+    return pMoves;
   }
 }
