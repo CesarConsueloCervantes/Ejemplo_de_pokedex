@@ -7,6 +7,8 @@ class PokemonProvider {
 
   int page = 0; //de 40 en 40
   List<Pokemon> pokemonsOnDisplay = [];
+  Map<String, List<PMove>> pokemonMoves = {};
+  List<PMove> movesOnDisplay = [];
   
   Future<String> _getJsonData(String endpoint) async {
     final url = Uri.https(_baseUrl, endpoint);
@@ -25,6 +27,17 @@ class PokemonProvider {
 
     pokemonsOnDisplay=pokemons;
     return pokemons;
+  }
+
+  Future<List<PMove>> getPokemonMoves(String namePokemon)async{
+    final jsonData = await _getJsonData('pokemon/$namePokemon');
+    final pokemonMove = pokemonFromJson(jsonData);
+
+    final List<Move> moves = pokemonMove.moves;
+    final List<PMove> pMoves ;
+
+    pokemonMoves[namePokemon] = pMoves;
+    return pMoves;
   }
 
   Future<List<Pokemon>> convertNameUrltoPokemons(List<NameUrl> nameUrlPokemons) async {
