@@ -1,10 +1,12 @@
+import 'package:ejemplo_de_pokedex/UI/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TypeProvider extends ChangeNotifier{
   final String _baseUrl = 'https://pokeapi.co/api/v2/type';
 
-  List<String> sprites=[];
+  List<PType> types = [];
+  Map<String, String> sprites = {};
   
   TypeProvider(){
 
@@ -17,5 +19,11 @@ class TypeProvider extends ChangeNotifier{
     return response.body;
   }
 
+  
 
+  getSpritesOfType() async {
+    final jsonData = _getJsonData('$_baseUrl/');
+
+    notifyListeners();
+  }
 }
