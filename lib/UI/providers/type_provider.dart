@@ -31,7 +31,11 @@ class TypeProvider extends ChangeNotifier{
 
   getSpritesOfType(){
     for (var i = 0; i < types.length; i++) {
-      sprites[types[i].name] = types[i].sprites.generationViii.brilliantDiamondAndShiningPearl.nameIcon;
+      if(types[i].sprites.generationViii.brilliantDiamondAndShiningPearl.nameIcon != null){
+        sprites[types[i].name] = types[i].sprites.generationViii.brilliantDiamondAndShiningPearl.nameIcon!;
+      }else{
+        sprites[types[i].name] = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-iii/colosseum/10001.png';
+      }
     }
 
     notifyListeners();
