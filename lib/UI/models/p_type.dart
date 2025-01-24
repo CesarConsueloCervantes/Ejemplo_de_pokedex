@@ -127,7 +127,7 @@ class TSprites {
     TGenerationIv generationIv;
     TGenerationIx generationIx;
     TGenerationV generationV;
-    Map<String, Colosseum> generationVi;
+    Map<String, SpriteIcon> generationVi;
     TGenerationVii generationVii;
     TGenerationViii generationViii;
 
@@ -146,18 +146,18 @@ class TSprites {
         generationIv: TGenerationIv.fromJson(json["generation-iv"]),
         generationIx: TGenerationIx.fromJson(json["generation-ix"]),
         generationV: TGenerationV.fromJson(json["generation-v"]),
-        generationVi: Map.from(json["generation-vi"]).map((k, v) => MapEntry<String, Colosseum>(k, Colosseum.fromJson(v))),
+        generationVi: Map.from(json["generation-vi"]).map((k, v) => MapEntry<String, SpriteIcon>(k, SpriteIcon.fromJson(v))),
         generationVii: TGenerationVii.fromJson(json["generation-vii"]),
         generationViii: TGenerationViii.fromJson(json["generation-viii"]),
     );
 }
 
 class TGenerationIii {
-    Colosseum colosseum;
-    Colosseum emerald;
-    Colosseum fireredLeafgreen;
-    Colosseum rubySaphire;
-    Colosseum xd;
+    SpriteIcon colosseum;
+    SpriteIcon emerald;
+    SpriteIcon fireredLeafgreen;
+    SpriteIcon rubySaphire;
+    SpriteIcon xd;
 
     TGenerationIii({
         required this.colosseum,
@@ -168,30 +168,30 @@ class TGenerationIii {
     });
 
     factory TGenerationIii.fromJson(Map<String, dynamic> json) => TGenerationIii(
-        colosseum: Colosseum.fromJson(json["colosseum"]),
-        emerald: Colosseum.fromJson(json["emerald"]),
-        fireredLeafgreen: Colosseum.fromJson(json["firered-leafgreen"]),
-        rubySaphire: Colosseum.fromJson(json["ruby-saphire"]),
-        xd: Colosseum.fromJson(json["xd"]),
+        colosseum: SpriteIcon.fromJson(json["SpriteIcon"]),
+        emerald: SpriteIcon.fromJson(json["emerald"]),
+        fireredLeafgreen: SpriteIcon.fromJson(json["firered-leafgreen"]),
+        rubySaphire: SpriteIcon.fromJson(json["ruby-saphire"]),
+        xd: SpriteIcon.fromJson(json["xd"]),
     );
 }
 
-class Colosseum {
+class SpriteIcon {
     String nameIcon;
 
-    Colosseum({
+    SpriteIcon({
         required this.nameIcon,
     });
 
-    factory Colosseum.fromJson(Map<String, dynamic> json) => Colosseum(
+    factory SpriteIcon.fromJson(Map<String, dynamic> json) => SpriteIcon(
         nameIcon: json["name_icon"],
     );
 }
 
 class TGenerationIv {
-    Colosseum diamondPearl;
-    Colosseum heartgoldSoulsilver;
-    Colosseum platinum;
+    SpriteIcon diamondPearl;
+    SpriteIcon heartgoldSoulsilver;
+    SpriteIcon platinum;
 
     TGenerationIv({
         required this.diamondPearl,
@@ -200,27 +200,27 @@ class TGenerationIv {
     });
 
     factory TGenerationIv.fromJson(Map<String, dynamic> json) => TGenerationIv(
-        diamondPearl: Colosseum.fromJson(json["diamond-pearl"]),
-        heartgoldSoulsilver: Colosseum.fromJson(json["heartgold-soulsilver"]),
-        platinum: Colosseum.fromJson(json["platinum"]),
+        diamondPearl: SpriteIcon.fromJson(json["diamond-pearl"]),
+        heartgoldSoulsilver: SpriteIcon.fromJson(json["heartgold-soulsilver"]),
+        platinum: SpriteIcon.fromJson(json["platinum"]),
     );
 }
 
 class TGenerationIx {
-    Colosseum scarletViolet;
+    SpriteIcon scarletViolet;
 
     TGenerationIx({
         required this.scarletViolet,
     });
 
     factory TGenerationIx.fromJson(Map<String, dynamic> json) => TGenerationIx(
-        scarletViolet: Colosseum.fromJson(json["scarlet-violet"]),
+        scarletViolet: SpriteIcon.fromJson(json["scarlet-violet"]),
     );
 }
 
 class TGenerationV {
-    Colosseum black2White2;
-    Colosseum blackWhite;
+    SpriteIcon black2White2;
+    SpriteIcon blackWhite;
 
     TGenerationV({
         required this.black2White2,
@@ -228,15 +228,15 @@ class TGenerationV {
     });
 
     factory TGenerationV.fromJson(Map<String, dynamic> json) => TGenerationV(
-        black2White2: Colosseum.fromJson(json["black-2-white-2"]),
-        blackWhite: Colosseum.fromJson(json["black-white"]),
+        black2White2: SpriteIcon.fromJson(json["black-2-white-2"]),
+        blackWhite: SpriteIcon.fromJson(json["black-white"]),
     );
 }
 
 class TGenerationVii {
-    Colosseum letsGoPikachuLetsGoEevee;
-    Colosseum sunMoon;
-    Colosseum ultraSunUltraMoon;
+    SpriteIcon letsGoPikachuLetsGoEevee;
+    SpriteIcon sunMoon;
+    SpriteIcon ultraSunUltraMoon;
 
     TGenerationVii({
         required this.letsGoPikachuLetsGoEevee,
@@ -245,16 +245,16 @@ class TGenerationVii {
     });
 
     factory TGenerationVii.fromJson(Map<String, dynamic> json) => TGenerationVii(
-        letsGoPikachuLetsGoEevee: Colosseum.fromJson(json["lets-go-pikachu-lets-go-eevee"]),
-        sunMoon: Colosseum.fromJson(json["sun-moon"]),
-        ultraSunUltraMoon: Colosseum.fromJson(json["ultra-sun-ultra-moon"]),
+        letsGoPikachuLetsGoEevee: SpriteIcon.fromJson(json["lets-go-pikachu-lets-go-eevee"]),
+        sunMoon: SpriteIcon.fromJson(json["sun-moon"]),
+        ultraSunUltraMoon: SpriteIcon.fromJson(json["ultra-sun-ultra-moon"]),
     );
 }
 
 class TGenerationViii {
-    Colosseum brilliantDiamondAndShiningPearl;
-    Colosseum legendsArceus;
-    Colosseum swordShield;
+    SpriteIcon brilliantDiamondAndShiningPearl;
+    SpriteIcon legendsArceus;
+    SpriteIcon swordShield;
 
     TGenerationViii({
         required this.brilliantDiamondAndShiningPearl,
@@ -263,8 +263,8 @@ class TGenerationViii {
     });
 
     factory TGenerationViii.fromJson(Map<String, dynamic> json) => TGenerationViii(
-        brilliantDiamondAndShiningPearl: Colosseum.fromJson(json["brilliant-diamond-and-shining-pearl"]),
-        legendsArceus: Colosseum.fromJson(json["legends-arceus"]),
-        swordShield: Colosseum.fromJson(json["sword-shield"]),
+        brilliantDiamondAndShiningPearl: SpriteIcon.fromJson(json["brilliant-diamond-and-shining-pearl"]),
+        legendsArceus: SpriteIcon.fromJson(json["legends-arceus"]),
+        swordShield: SpriteIcon.fromJson(json["sword-shield"]),
     );
 }
