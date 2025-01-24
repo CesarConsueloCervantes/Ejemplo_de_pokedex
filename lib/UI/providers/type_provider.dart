@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 class TypeProvider extends ChangeNotifier{
   final String _baseUrl = 'https://pokeapi.co/api/v2/type';
 
-  List<PType> types = [];
-  Map<String, String> sprites = {};
+  List<NameUrl> types = [];
   
   TypeProvider(){
 
@@ -19,11 +18,11 @@ class TypeProvider extends ChangeNotifier{
     return response.body;
   }
 
-  
-
   getSpritesOfType() async {
     final jsonData = _getJsonData('$_baseUrl/');
 
     notifyListeners();
   }
+
+
 }
