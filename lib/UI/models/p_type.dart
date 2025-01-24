@@ -10,16 +10,16 @@ PType pTypeFromJson(String str) => PType.fromJson(json.decode(str));
 
 class PType {
     DamageRelations damageRelations;
-    List<GameIndex> gameIndices;
+    List<TGameIndex> gameIndices;
     NameUrl generation;
     int id;
     NameUrl moveDamageClass;
     List<NameUrl> moves;
     String name;
-    List<Name> names;
+    List<TName> names;
     List<dynamic> pastDamageRelations;
-    List<TPokemon> Pokemon;
-    Sprites sprites;
+    List<TPokemon> pokemon;
+    TSprites sprites;
 
     PType({
         required this.damageRelations,
@@ -31,22 +31,22 @@ class PType {
         required this.name,
         required this.names,
         required this.pastDamageRelations,
-        required this.Pokemon,
+        required this.pokemon,
         required this.sprites,
     });
 
     factory PType.fromJson(Map<String, dynamic> json) => PType(
         damageRelations: DamageRelations.fromJson(json["damage_relations"]),
-        gameIndices: List<GameIndex>.from(json["game_indices"].map((x) => GameIndex.fromJson(x))),
+        gameIndices: List<TGameIndex>.from(json["game_indices"].map((x) => TGameIndex.fromJson(x))),
         generation: NameUrl.fromJson(json["generation"]),
         id: json["id"],
         moveDamageClass: NameUrl.fromJson(json["move_damage_class"]),
         moves: List<NameUrl>.from(json["moves"].map((x) => NameUrl.fromJson(x))),
         name: json["name"],
-        names: List<Name>.from(json["names"].map((x) => Name.fromJson(x))),
+        names: List<TName>.from(json["names"].map((x) => TName.fromJson(x))),
         pastDamageRelations: List<dynamic>.from(json["past_damage_relations"].map((x) => x)),
-        Pokemon: List<TPokemon>.from(json["TPokemon"].map((x) => TPokemon.fromJson(x))),
-        sprites: Sprites.fromJson(json["sprites"]),
+        pokemon: List<TPokemon>.from(json["TPokemon"].map((x) => TPokemon.fromJson(x))),
+        sprites: TSprites.fromJson(json["sprites"]),
     );
 }
 
@@ -77,31 +77,31 @@ class DamageRelations {
     );
 }
 
-class GameIndex {
+class TGameIndex {
     int gameIndex;
     NameUrl generation;
 
-    GameIndex({
+    TGameIndex({
         required this.gameIndex,
         required this.generation,
     });
 
-    factory GameIndex.fromJson(Map<String, dynamic> json) => GameIndex(
+    factory TGameIndex.fromJson(Map<String, dynamic> json) => TGameIndex(
         gameIndex: json["game_index"],
         generation: NameUrl.fromJson(json["generation"]),
     );
 }
 
-class Name {
+class TName {
     NameUrl language;
     String name;
 
-    Name({
+    TName({
         required this.language,
         required this.name,
     });
 
-    factory Name.fromJson(Map<String, dynamic> json) => Name(
+    factory TName.fromJson(Map<String, dynamic> json) => TName(
         language: NameUrl.fromJson(json["language"]),
         name: json["name"],
     );
@@ -122,16 +122,16 @@ class TPokemon {
     );
 }
 
-class Sprites {
-    GenerationIii generationIii;
-    GenerationIv generationIv;
-    GenerationIx generationIx;
-    GenerationV generationV;
-    Map<String, Colosseum> generationVi;
-    GenerationVii generationVii;
-    GenerationViii generationViii;
+class TSprites {
+    TGenerationIii generationIii;
+    TGenerationIv generationIv;
+    TGenerationIx generationIx;
+    TGenerationV generationV;
+    Map<String, SpriteIcon> generationVi;
+    TGenerationVii generationVii;
+    TGenerationViii generationViii;
 
-    Sprites({
+    TSprites({
         required this.generationIii,
         required this.generationIv,
         required this.generationIx,
@@ -141,25 +141,25 @@ class Sprites {
         required this.generationViii,
     });
 
-    factory Sprites.fromJson(Map<String, dynamic> json) => Sprites(
-        generationIii: GenerationIii.fromJson(json["generation-iii"]),
-        generationIv: GenerationIv.fromJson(json["generation-iv"]),
-        generationIx: GenerationIx.fromJson(json["generation-ix"]),
-        generationV: GenerationV.fromJson(json["generation-v"]),
-        generationVi: Map.from(json["generation-vi"]).map((k, v) => MapEntry<String, Colosseum>(k, Colosseum.fromJson(v))),
-        generationVii: GenerationVii.fromJson(json["generation-vii"]),
-        generationViii: GenerationViii.fromJson(json["generation-viii"]),
+    factory TSprites.fromJson(Map<String, dynamic> json) => TSprites(
+        generationIii: TGenerationIii.fromJson(json["generation-iii"]),
+        generationIv: TGenerationIv.fromJson(json["generation-iv"]),
+        generationIx: TGenerationIx.fromJson(json["generation-ix"]),
+        generationV: TGenerationV.fromJson(json["generation-v"]),
+        generationVi: Map.from(json["generation-vi"]).map((k, v) => MapEntry<String, SpriteIcon>(k, SpriteIcon.fromJson(v))),
+        generationVii: TGenerationVii.fromJson(json["generation-vii"]),
+        generationViii: TGenerationViii.fromJson(json["generation-viii"]),
     );
 }
 
-class GenerationIii {
-    Colosseum colosseum;
-    Colosseum emerald;
-    Colosseum fireredLeafgreen;
-    Colosseum rubySaphire;
-    Colosseum xd;
+class TGenerationIii {
+    SpriteIcon colosseum;
+    SpriteIcon emerald;
+    SpriteIcon fireredLeafgreen;
+    SpriteIcon rubySaphire;
+    SpriteIcon xd;
 
-    GenerationIii({
+    TGenerationIii({
         required this.colosseum,
         required this.emerald,
         required this.fireredLeafgreen,
@@ -167,104 +167,104 @@ class GenerationIii {
         required this.xd,
     });
 
-    factory GenerationIii.fromJson(Map<String, dynamic> json) => GenerationIii(
-        colosseum: Colosseum.fromJson(json["colosseum"]),
-        emerald: Colosseum.fromJson(json["emerald"]),
-        fireredLeafgreen: Colosseum.fromJson(json["firered-leafgreen"]),
-        rubySaphire: Colosseum.fromJson(json["ruby-saphire"]),
-        xd: Colosseum.fromJson(json["xd"]),
+    factory TGenerationIii.fromJson(Map<String, dynamic> json) => TGenerationIii(
+        colosseum: SpriteIcon.fromJson(json["SpriteIcon"]),
+        emerald: SpriteIcon.fromJson(json["emerald"]),
+        fireredLeafgreen: SpriteIcon.fromJson(json["firered-leafgreen"]),
+        rubySaphire: SpriteIcon.fromJson(json["ruby-saphire"]),
+        xd: SpriteIcon.fromJson(json["xd"]),
     );
 }
 
-class Colosseum {
-    String nameIcon;
+class SpriteIcon {
+    String? nameIcon;
 
-    Colosseum({
-        required this.nameIcon,
+    SpriteIcon({
+        this.nameIcon,
     });
 
-    factory Colosseum.fromJson(Map<String, dynamic> json) => Colosseum(
+    factory SpriteIcon.fromJson(Map<String, dynamic> json) => SpriteIcon(
         nameIcon: json["name_icon"],
     );
 }
 
-class GenerationIv {
-    Colosseum diamondPearl;
-    Colosseum heartgoldSoulsilver;
-    Colosseum platinum;
+class TGenerationIv {
+    SpriteIcon diamondPearl;
+    SpriteIcon heartgoldSoulsilver;
+    SpriteIcon platinum;
 
-    GenerationIv({
+    TGenerationIv({
         required this.diamondPearl,
         required this.heartgoldSoulsilver,
         required this.platinum,
     });
 
-    factory GenerationIv.fromJson(Map<String, dynamic> json) => GenerationIv(
-        diamondPearl: Colosseum.fromJson(json["diamond-pearl"]),
-        heartgoldSoulsilver: Colosseum.fromJson(json["heartgold-soulsilver"]),
-        platinum: Colosseum.fromJson(json["platinum"]),
+    factory TGenerationIv.fromJson(Map<String, dynamic> json) => TGenerationIv(
+        diamondPearl: SpriteIcon.fromJson(json["diamond-pearl"]),
+        heartgoldSoulsilver: SpriteIcon.fromJson(json["heartgold-soulsilver"]),
+        platinum: SpriteIcon.fromJson(json["platinum"]),
     );
 }
 
-class GenerationIx {
-    Colosseum scarletViolet;
+class TGenerationIx {
+    SpriteIcon scarletViolet;
 
-    GenerationIx({
+    TGenerationIx({
         required this.scarletViolet,
     });
 
-    factory GenerationIx.fromJson(Map<String, dynamic> json) => GenerationIx(
-        scarletViolet: Colosseum.fromJson(json["scarlet-violet"]),
+    factory TGenerationIx.fromJson(Map<String, dynamic> json) => TGenerationIx(
+        scarletViolet: SpriteIcon.fromJson(json["scarlet-violet"]),
     );
 }
 
-class GenerationV {
-    Colosseum black2White2;
-    Colosseum blackWhite;
+class TGenerationV {
+    SpriteIcon black2White2;
+    SpriteIcon blackWhite;
 
-    GenerationV({
+    TGenerationV({
         required this.black2White2,
         required this.blackWhite,
     });
 
-    factory GenerationV.fromJson(Map<String, dynamic> json) => GenerationV(
-        black2White2: Colosseum.fromJson(json["black-2-white-2"]),
-        blackWhite: Colosseum.fromJson(json["black-white"]),
+    factory TGenerationV.fromJson(Map<String, dynamic> json) => TGenerationV(
+        black2White2: SpriteIcon.fromJson(json["black-2-white-2"]),
+        blackWhite: SpriteIcon.fromJson(json["black-white"]),
     );
 }
 
-class GenerationVii {
-    Colosseum letsGoPikachuLetsGoEevee;
-    Colosseum sunMoon;
-    Colosseum ultraSunUltraMoon;
+class TGenerationVii {
+    SpriteIcon letsGoPikachuLetsGoEevee;
+    SpriteIcon sunMoon;
+    SpriteIcon ultraSunUltraMoon;
 
-    GenerationVii({
+    TGenerationVii({
         required this.letsGoPikachuLetsGoEevee,
         required this.sunMoon,
         required this.ultraSunUltraMoon,
     });
 
-    factory GenerationVii.fromJson(Map<String, dynamic> json) => GenerationVii(
-        letsGoPikachuLetsGoEevee: Colosseum.fromJson(json["lets-go-pikachu-lets-go-eevee"]),
-        sunMoon: Colosseum.fromJson(json["sun-moon"]),
-        ultraSunUltraMoon: Colosseum.fromJson(json["ultra-sun-ultra-moon"]),
+    factory TGenerationVii.fromJson(Map<String, dynamic> json) => TGenerationVii(
+        letsGoPikachuLetsGoEevee: SpriteIcon.fromJson(json["lets-go-pikachu-lets-go-eevee"]),
+        sunMoon: SpriteIcon.fromJson(json["sun-moon"]),
+        ultraSunUltraMoon: SpriteIcon.fromJson(json["ultra-sun-ultra-moon"]),
     );
 }
 
-class GenerationViii {
-    Colosseum brilliantDiamondAndShiningPearl;
-    Colosseum legendsArceus;
-    Colosseum swordShield;
+class TGenerationViii {
+    SpriteIcon brilliantDiamondAndShiningPearl;
+    SpriteIcon legendsArceus;
+    SpriteIcon swordShield;
 
-    GenerationViii({
+    TGenerationViii({
         required this.brilliantDiamondAndShiningPearl,
         required this.legendsArceus,
         required this.swordShield,
     });
 
-    factory GenerationViii.fromJson(Map<String, dynamic> json) => GenerationViii(
-        brilliantDiamondAndShiningPearl: Colosseum.fromJson(json["brilliant-diamond-and-shining-pearl"]),
-        legendsArceus: Colosseum.fromJson(json["legends-arceus"]),
-        swordShield: Colosseum.fromJson(json["sword-shield"]),
+    factory TGenerationViii.fromJson(Map<String, dynamic> json) => TGenerationViii(
+        brilliantDiamondAndShiningPearl: SpriteIcon.fromJson(json["brilliant-diamond-and-shining-pearl"]),
+        legendsArceus: SpriteIcon.fromJson(json["legends-arceus"]),
+        swordShield: SpriteIcon.fromJson(json["sword-shield"]),
     );
 }

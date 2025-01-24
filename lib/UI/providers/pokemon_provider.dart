@@ -70,7 +70,7 @@ class PokemonProvider {
       pMove = moves[i].move;
       nameMove = pMove.name;
 
-      jsonData = _getJsonData('move/$nameMove');
+      jsonData = await _getJsonData('move/$nameMove');
       pMoves[i] = pMoveFromJson(jsonData);
     }
 
