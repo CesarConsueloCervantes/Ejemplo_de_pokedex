@@ -177,10 +177,10 @@ class TGenerationIii {
 }
 
 class SpriteIcon {
-    String nameIcon;
+    String? nameIcon;
 
     SpriteIcon({
-        required this.nameIcon,
+        this.nameIcon,
     });
 
     factory SpriteIcon.fromJson(Map<String, dynamic> json) => SpriteIcon(
