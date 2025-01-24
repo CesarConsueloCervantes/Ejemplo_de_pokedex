@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class TypeProvider extends ChangeNotifier{
   final String _baseUrl = 'https://pokeapi.co/api/v2/type';
 
-  List<NameUrl> types = [];
+  List<PType> types = [];
   Map<String, String> sprites = {};
   
   TypeProvider(){
