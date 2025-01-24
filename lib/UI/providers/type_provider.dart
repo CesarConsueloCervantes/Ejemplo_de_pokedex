@@ -25,7 +25,7 @@ class TypeProvider extends ChangeNotifier{
     final jsonData = await _getJsonData('$_baseUrl/type?offset=0&limit=100');
     final typeResponse = typeResponseFromJson(jsonData);
 
-    types = typeResponse.results;
+    _convertNameUrlToPType(typeResponse.results);
     notifyListeners();
   }
 
@@ -35,5 +35,17 @@ class TypeProvider extends ChangeNotifier{
     notifyListeners();
   }
 
+    _convertNameUrlToPType(List<NameUrl> typesNameUrl) async {
+    var jsonData;
+    NameUrl typeNameUrl;
+    String typeName;
 
+    for (var i = 0; i < typesNameUrl.length; i++) {
+      typeNameUrl = typesNameUrl[i];
+      typeName = typeNameUrl.name;
+
+      jsonData = await _getJsonData('$_baseUrl/type/$typeName');
+      types[i] = pTypeFromJson(jsonData);
+    }
+  }
 }
