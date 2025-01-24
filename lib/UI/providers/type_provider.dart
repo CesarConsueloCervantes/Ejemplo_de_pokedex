@@ -10,6 +10,8 @@ class TypeProvider extends ChangeNotifier{
   
   TypeProvider(){
 
+    getPTypes();
+
   }
 
   Future<String> _getJsonData(String endpoint) async {
@@ -19,7 +21,7 @@ class TypeProvider extends ChangeNotifier{
     return response.body;
   }
 
-    getPTypes() async {
+  getPTypes() async {
     final jsonData = await _getJsonData('$_baseUrl/type?offset=0&limit=100');
     final typeResponse = typeResponseFromJson(jsonData);
 
