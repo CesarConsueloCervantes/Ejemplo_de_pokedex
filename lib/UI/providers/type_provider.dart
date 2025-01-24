@@ -11,7 +11,7 @@ class TypeProvider extends ChangeNotifier{
   TypeProvider(){
 
     getPTypes();
-
+    getSpritesOfType();
   }
 
   Future<String> _getJsonData(String endpoint) async {
@@ -29,8 +29,10 @@ class TypeProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  getSpritesOfType() async {
-    final jsonData = _getJsonData('$_baseUrl/');
+  getSpritesOfType(){
+    for (var i = 0; i < types.length; i++) {
+      sprites[types[i].name] = types[i].sprites.generationViii.brilliantDiamondAndShiningPearl.nameIcon;
+    }
 
     notifyListeners();
   }
