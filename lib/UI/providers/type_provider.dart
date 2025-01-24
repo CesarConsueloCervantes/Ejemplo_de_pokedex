@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TypeProvider extends ChangeNotifier{
-  final String _baseUrl = 'https://pokeapi.co/api/v2/type';
+  final String _baseUrl = 'https://pokeapi.co/api/v2';
 
   List<PType> types = [];
   Map<String, String> sprites = {};
