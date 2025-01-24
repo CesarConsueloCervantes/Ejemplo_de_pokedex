@@ -6,7 +6,7 @@ class TypeProvider extends ChangeNotifier{
   final String _baseUrl = 'https://pokeapi.co/api/v2/type';
 
   List<NameUrl> types = [];
-
+  Map<String, String> sprites = {};
   
   TypeProvider(){
 
