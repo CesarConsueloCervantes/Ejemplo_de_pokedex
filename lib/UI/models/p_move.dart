@@ -1,14 +1,14 @@
 // To parse this JSON data, do
 //
-//     final move = moveFromJson(jsonString);
+//     final PMove = PMoveFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
 
-Move moveFromJson(String str) => Move.fromJson(json.decode(str));
+PMove pMoveFromJson(String str) => PMove.fromJson(json.decode(str));
 
-class Move {
+class PMove {
     int? accuracy;
     ContestCombos? contestCombos;
     ContestEffect? contestEffect;
@@ -16,7 +16,7 @@ class Move {
     NameUrl damageClass;
     int? effectChance;
     List<EffectChange>? effectChanges;
-    List<MoveEffectEntry> effectEntries;
+    List<PMoveEffectEntry> effectEntries;
     List<FlavorTextEntry> flavorTextEntries;
     NameUrl generation;
     int id;
@@ -34,7 +34,7 @@ class Move {
     NameUrl target;
     NameUrl type;
 
-    Move({
+    PMove({
         this.accuracy,
         this.contestCombos,
         this.contestEffect,
@@ -61,7 +61,7 @@ class Move {
         required this.type,
     });
 
-    factory Move.fromJson(Map<String, dynamic> json) => Move(
+    factory PMove.fromJson(Map<String, dynamic> json) => PMove(
         accuracy: json["accuracy"],
         contestCombos: ContestCombos.fromJson(json["contest_combos"]),
         contestEffect: ContestEffect.fromJson(json["contest_effect"]),
@@ -69,7 +69,7 @@ class Move {
         damageClass: NameUrl.fromJson(json["damage_class"]),
         effectChance: json["effect_chance"],
         effectChanges: List<EffectChange>.from(json["effect_changes"].map((x) => EffectChange.fromJson(x))),
-        effectEntries: List<MoveEffectEntry>.from(json["effect_entries"].map((x) => MoveEffectEntry.fromJson(x))),
+        effectEntries: List<PMoveEffectEntry>.from(json["effect_entries"].map((x) => PMoveEffectEntry.fromJson(x))),
         flavorTextEntries: List<FlavorTextEntry>.from(json["flavor_text_entries"].map((x) => FlavorTextEntry.fromJson(x))),
         generation: NameUrl.fromJson(json["generation"]),
         id: json["id"],
@@ -161,18 +161,18 @@ class EffectChangeEffectEntry {
     );
 }
 
-class MoveEffectEntry {
+class PMoveEffectEntry {
     String effect;
     NameUrl language;
     String shortEffect;
 
-    MoveEffectEntry({
+    PMoveEffectEntry({
         required this.effect,
         required this.language,
         required this.shortEffect,
     });
 
-    factory MoveEffectEntry.fromJson(Map<String, dynamic> json) => MoveEffectEntry(
+    factory PMoveEffectEntry.fromJson(Map<String, dynamic> json) => PMoveEffectEntry(
         effect: json["effect"],
         language: NameUrl.fromJson(json["language"]),
         shortEffect: json["short_effect"],

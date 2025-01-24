@@ -1,14 +1,14 @@
 // To parse this JSON data, do
 //
-//     final type = typeFromJson(jsonString);
+//     final PType = PTypeFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
 
-Type typeFromJson(String str) => Type.fromJson(json.decode(str));
+PType pTypeFromJson(String str) => PType.fromJson(json.decode(str));
 
-class Type {
+class PType {
     DamageRelations damageRelations;
     List<GameIndex> gameIndices;
     NameUrl generation;
@@ -18,10 +18,10 @@ class Type {
     String name;
     List<Name> names;
     List<dynamic> pastDamageRelations;
-    List<Pokemon> pokemon;
+    List<TPokemon> Pokemon;
     Sprites sprites;
 
-    Type({
+    PType({
         required this.damageRelations,
         required this.gameIndices,
         required this.generation,
@@ -31,11 +31,11 @@ class Type {
         required this.name,
         required this.names,
         required this.pastDamageRelations,
-        required this.pokemon,
+        required this.Pokemon,
         required this.sprites,
     });
 
-    factory Type.fromJson(Map<String, dynamic> json) => Type(
+    factory PType.fromJson(Map<String, dynamic> json) => PType(
         damageRelations: DamageRelations.fromJson(json["damage_relations"]),
         gameIndices: List<GameIndex>.from(json["game_indices"].map((x) => GameIndex.fromJson(x))),
         generation: NameUrl.fromJson(json["generation"]),
@@ -45,7 +45,7 @@ class Type {
         name: json["name"],
         names: List<Name>.from(json["names"].map((x) => Name.fromJson(x))),
         pastDamageRelations: List<dynamic>.from(json["past_damage_relations"].map((x) => x)),
-        pokemon: List<Pokemon>.from(json["pokemon"].map((x) => Pokemon.fromJson(x))),
+        Pokemon: List<TPokemon>.from(json["TPokemon"].map((x) => TPokemon.fromJson(x))),
         sprites: Sprites.fromJson(json["sprites"]),
     );
 }
@@ -107,17 +107,17 @@ class Name {
     );
 }
 
-class Pokemon {
-    NameUrl pokemon;
+class TPokemon {
+    NameUrl Pokemon;
     int slot;
 
-    Pokemon({
-        required this.pokemon,
+    TPokemon({
+        required this.Pokemon,
         required this.slot,
     });
 
-    factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
-        pokemon: NameUrl.fromJson(json["pokemon"]),
+    factory TPokemon.fromJson(Map<String, dynamic> json) => TPokemon(
+        Pokemon: NameUrl.fromJson(json["TPokemon"]),
         slot: json["slot"],
     );
 }
