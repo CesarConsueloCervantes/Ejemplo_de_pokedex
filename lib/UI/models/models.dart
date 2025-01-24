@@ -1,3 +1,4 @@
+export 'package:ejemplo_de_pokedex/UI/models/name_url.dart';
 export 'package:ejemplo_de_pokedex/UI/models/p_type.dart';
 export 'package:ejemplo_de_pokedex/UI/models/p_move.dart';
 export 'package:ejemplo_de_pokedex/UI/models/pokemon.dart';
