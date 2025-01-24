@@ -6,6 +6,7 @@ class TypeProvider extends ChangeNotifier{
   final String _baseUrl = 'https://pokeapi.co/api/v2/type';
 
   List<NameUrl> types = [];
+
   
   TypeProvider(){
 
@@ -16,6 +17,14 @@ class TypeProvider extends ChangeNotifier{
 
     final response = await http.get(url);
     return response.body;
+  }
+
+    getPTypes() async {
+    final jsonData = await _getJsonData('$_baseUrl/type?offset=0&limit=100');
+    final typeResponse = typeResponseFromJson(jsonData);
+
+    types = typeResponse.results;
+    notifyListeners();
   }
 
   getSpritesOfType() async {
