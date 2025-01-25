@@ -108,16 +108,16 @@ class TName {
 }
 
 class TPokemon {
-    NameUrl Pokemon;
+    NameUrl pokemon;
     int slot;
 
     TPokemon({
-        required this.Pokemon,
+        required this.pokemon,
         required this.slot,
     });
 
     factory TPokemon.fromJson(Map<String, dynamic> json) => TPokemon(
-        Pokemon: NameUrl.fromJson(json["TPokemon"]),
+        pokemon: NameUrl.fromJson(json["TPokemon"]),
         slot: json["slot"],
     );
 }
