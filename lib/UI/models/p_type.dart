@@ -184,7 +184,7 @@ class SpriteIcon {
     });
 
     factory SpriteIcon.fromJson(Map<String, dynamic> json) => SpriteIcon(
-        nameIcon: json["name_icon"],
+        nameIcon: json["name_icon"] ?? json["name_icon"],
     );
 }
 
