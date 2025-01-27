@@ -7,7 +7,6 @@ class PokemonProvider {
 
   List<Pokemon> pokemonsOnDisplay = [];
   Map<String, List<PMove>> pokemonMoves = {};
-  List<PMove> movesOnDisplay = [];
   
   Future<String> _getJsonData(String endpoint) async {
     final url = Uri.https(_baseUrl, endpoint);
