@@ -27,13 +27,19 @@ class PokemonProvider {
   }
 
   Future<List<PMove>> getPokemonMoves(String namePokemon)async{
+    List<PMove> pMoves;
+
     final jsonData = await _getJsonData('pokemon/$namePokemon');
     final pokemonMove = pokemonFromJson(jsonData);
 
+    if (pokemonMoves[namePokemon] !=null){
+      pMoves = pokemonMoves[namePokemon]!;
+    } else {
     final List<Move> moves = pokemonMove.moves;
-    final List<PMove> pMoves = await convertMovesToPmoves(moves);
-
+      pMoves = await convertMovesToPmoves(moves);
     pokemonMoves[namePokemon] = pMoves;
+    }
+
     return pMoves;
   }
 
