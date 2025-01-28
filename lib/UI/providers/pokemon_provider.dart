@@ -16,8 +16,8 @@ class PokemonProvider {
     return response.body;
   }
 
-  Future<List<Pokemon>> searchPokemons (int page) async{
-    final jsonData = await _getJsonData('pokemon?offset=$page&limit=$_pageLimit');
+  Future<List<Pokemon>> searchPokemons () async{
+    final jsonData = await _getJsonData('pokemon?offset=0&limit=10000');
     final pokemonResponse = pokemonResponseFromJson(jsonData);
 
     final List<NameUrl> nameUrlPokemons =pokemonResponse.results;
