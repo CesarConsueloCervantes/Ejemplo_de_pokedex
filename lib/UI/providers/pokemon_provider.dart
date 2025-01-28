@@ -14,6 +14,18 @@ class PokemonProvider {
     return response.body;
   }
 
+  Future<List<Pokemon>> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0])async{
+    List<NameUrl> pokemosNameUrl = [];
+    
+    for (var i = page; i < _pageLimit; i++) {
+        pokemosNameUrl[i] = tPokemons[i].pokemon;
+    }
+
+    List<Pokemon> pokemons = await convertNameUrltoPokemons(pokemosNameUrl);
+
+    return pokemons;
+  }
+
   Future<List<Pokemon>> searchPokemons () async{
     final jsonData = await _getJsonData('pokemon?offset=0&limit=10000');
     final pokemonResponse = pokemonResponseFromJson(jsonData);
