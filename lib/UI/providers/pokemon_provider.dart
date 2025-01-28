@@ -6,6 +6,7 @@ class PokemonProvider {
     final int _pageLimit = 40;
 
   List<Pokemon> pokemonsOnDisplay = [];
+  
   Map<String, List<PMove>> pokemonMoves = {};
   
   Future<String> _getJsonData(String endpoint) async {
@@ -15,7 +16,7 @@ class PokemonProvider {
     return response.body;
   }
 
-    Future<List<Pokemon>> getPokemonOnDisplay (int page) async{
+  Future<List<Pokemon>> searchPokemons (int page) async{
     final jsonData = await _getJsonData('pokemon?offset=$page&limit=$_pageLimit');
     final pokemonResponse = pokemonResponseFromJson(jsonData);
 
