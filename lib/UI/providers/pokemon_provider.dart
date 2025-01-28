@@ -5,8 +5,6 @@ class PokemonProvider {
     final String _baseUrl = 'https://pokeapi.co/api/v2';
     final int _pageLimit = 40;
 
-  List<Pokemon> pokemonsOnDisplay = [];
-  
   Map<String, List<PMove>> pokemonMoves = {};
   
   Future<String> _getJsonData(String endpoint) async {
@@ -23,7 +21,6 @@ class PokemonProvider {
     final List<NameUrl> nameUrlPokemons =pokemonResponse.results;
     final List<Pokemon> pokemons = await convertNameUrltoPokemons(nameUrlPokemons);
 
-    pokemonsOnDisplay=pokemons;
     return pokemons;
   }
 
