@@ -5,10 +5,7 @@ class PokemonProvider {
     final String _baseUrl = 'https://pokeapi.co/api/v2';
     final int _pageLimit = 40;
 
-  int page = 0; //de 40 en 40
-  List<Pokemon> pokemonsOnDisplay = [];
   Map<String, List<PMove>> pokemonMoves = {};
-  List<PMove> movesOnDisplay = [];
   
   Future<String> _getJsonData(String endpoint) async {
     final url = Uri.https(_baseUrl, endpoint);
@@ -17,26 +14,42 @@ class PokemonProvider {
     return response.body;
   }
 
-    Future<List<Pokemon>> getPokemonOnDisplay () async{
-    final jsonData = await _getJsonData('pokemon?offset=$page&limit=$_pageLimit');
+  Future<List<Pokemon>> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0])async{
+    List<NameUrl> pokemosNameUrl = [];
+    
+    for (var i = page; i < _pageLimit; i++) {
+        pokemosNameUrl[i] = tPokemons[i].pokemon;
+    }
+
+    List<Pokemon> pokemons = await convertNameUrltoPokemons(pokemosNameUrl);
+
+    return pokemons;
+  }
+
+  Future<List<Pokemon>> searchPokemons () async{
+    final jsonData = await _getJsonData('pokemon?offset=0&limit=10000');
     final pokemonResponse = pokemonResponseFromJson(jsonData);
-    page += 40;
 
     final List<NameUrl> nameUrlPokemons =pokemonResponse.results;
     final List<Pokemon> pokemons = await convertNameUrltoPokemons(nameUrlPokemons);
 
-    pokemonsOnDisplay=pokemons;
     return pokemons;
   }
 
   Future<List<PMove>> getPokemonMoves(String namePokemon)async{
+    List<PMove> pMoves;
+
     final jsonData = await _getJsonData('pokemon/$namePokemon');
     final pokemonMove = pokemonFromJson(jsonData);
 
+    if (pokemonMoves[namePokemon] !=null){
+      pMoves = pokemonMoves[namePokemon]!;
+    } else {
     final List<Move> moves = pokemonMove.moves;
-    final List<PMove> pMoves = await convertMovesToPmoves(moves);
-
+      pMoves = await convertMovesToPmoves(moves);
     pokemonMoves[namePokemon] = pMoves;
+    }
+
     return pMoves;
   }
 
