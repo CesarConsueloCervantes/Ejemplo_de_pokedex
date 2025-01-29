@@ -8,7 +8,7 @@ class NameUrl {
     });
 
     factory NameUrl.fromJson(Map<String, dynamic> json) => NameUrl(
-        name: json["name"],
-        url: json["url"],
+        name: json["name"]??"",
+        url: json["url"]??"",
     );
 }
