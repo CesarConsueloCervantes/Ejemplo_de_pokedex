@@ -1,12 +1,12 @@
-import 'package:ejemplo_de_pokedex/UI/routes/group_routes.dart';
+import 'package:ejemplo_de_pokedex/UI/models/models.dart';
 import 'package:flutter/material.dart';
 
 class GroupOption extends StatelessWidget {
-  const GroupOption({super.key});
+  final List<PType> types;
+  const GroupOption({super.key, required this.types});
 
   @override
   Widget build(BuildContext context) {
-    final menuGroupOption = GroupRoutes.menuGroupOption;
     return Flexible(
       fit: FlexFit.loose,
       child: ListView.builder(
@@ -19,11 +19,11 @@ class GroupOption extends StatelessWidget {
               border: Border.all(width: 1),
               borderRadius: BorderRadius.circular(10)
             ),
-            child:Text(menuGroupOption[index].name, style: Theme.of(context).textTheme.bodyLarge),
+            child:Text(types[index].name, style: Theme.of(context).textTheme.bodyLarge),
             ),
             onTap: () => Navigator.pushNamed(context, 'results', arguments: index),
           ),
-        itemCount: menuGroupOption.length
+        itemCount: types.length
       ),
     );
   }

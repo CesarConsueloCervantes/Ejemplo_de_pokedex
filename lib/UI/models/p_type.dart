@@ -13,12 +13,12 @@ class PType {
     List<TGameIndex> gameIndices;
     NameUrl generation;
     int id;
-    NameUrl moveDamageClass;
+    NameUrl? moveDamageClass;
     List<NameUrl> moves;
     String name;
     List<TName> names;
     List<dynamic> pastDamageRelations;
-    List<TPokemon> pokemon;
+    List<TPokemon>? pokemon;
     TSprites sprites;
 
     PType({
@@ -26,12 +26,12 @@ class PType {
         required this.gameIndices,
         required this.generation,
         required this.id,
-        required this.moveDamageClass,
+        this.moveDamageClass,
         required this.moves,
         required this.name,
         required this.names,
         required this.pastDamageRelations,
-        required this.pokemon,
+        this.pokemon,
         required this.sprites,
     });
 
@@ -40,12 +40,12 @@ class PType {
         gameIndices: List<TGameIndex>.from(json["game_indices"].map((x) => TGameIndex.fromJson(x))),
         generation: NameUrl.fromJson(json["generation"]),
         id: json["id"],
-        moveDamageClass: NameUrl.fromJson(json["move_damage_class"]),
+        moveDamageClass: json["move_damage_class"] != null ? NameUrl.fromJson(json["move_damage_class"]) : null,
         moves: List<NameUrl>.from(json["moves"].map((x) => NameUrl.fromJson(x))),
         name: json["name"],
         names: List<TName>.from(json["names"].map((x) => TName.fromJson(x))),
         pastDamageRelations: List<dynamic>.from(json["past_damage_relations"].map((x) => x)),
-        pokemon: List<TPokemon>.from(json["TPokemon"].map((x) => TPokemon.fromJson(x))),
+        pokemon: (json["TPokemon"] as List?)?.map((x) => TPokemon.fromJson(x)).toList() ?? [],
         sprites: TSprites.fromJson(json["sprites"]),
     );
 }
@@ -153,14 +153,14 @@ class TSprites {
 }
 
 class TGenerationIii {
-    SpriteIcon colosseum;
+    SpriteIcon? colosseum;
     SpriteIcon emerald;
     SpriteIcon fireredLeafgreen;
     SpriteIcon rubySaphire;
     SpriteIcon xd;
 
     TGenerationIii({
-        required this.colosseum,
+        this.colosseum,
         required this.emerald,
         required this.fireredLeafgreen,
         required this.rubySaphire,
@@ -168,7 +168,7 @@ class TGenerationIii {
     });
 
     factory TGenerationIii.fromJson(Map<String, dynamic> json) => TGenerationIii(
-        colosseum: SpriteIcon.fromJson(json["SpriteIcon"]),
+        colosseum: SpriteIcon.fromJson(json["colosseum"]),
         emerald: SpriteIcon.fromJson(json["emerald"]),
         fireredLeafgreen: SpriteIcon.fromJson(json["firered-leafgreen"]),
         rubySaphire: SpriteIcon.fromJson(json["ruby-saphire"]),
