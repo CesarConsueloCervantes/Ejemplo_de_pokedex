@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TypeProvider extends ChangeNotifier{
-  final String _baseUrl = 'https://pokeapi.co/api/v2';
+  final String _baseUrl = 'pokeapi.co';
 
   List<PType> types = [];
   Map<String, String> sprites = {};
@@ -11,18 +11,20 @@ class TypeProvider extends ChangeNotifier{
   TypeProvider(){
 
     getPTypes();
-    getSpritesOfType();
   }
 
   Future<String> _getJsonData(String endpoint) async {
-    final url = Uri.https(endpoint);
+    final url = Uri.https(_baseUrl, 'api/v2/$endpoint');
 
+    print(url);
     final response = await http.get(url);
+    print(response.body);
     return response.body;
   }
 
+
   getPTypes() async {
-    final jsonData = await _getJsonData('$_baseUrl/type?offset=0&limit=100');
+    final jsonData = await _getJsonData('type');
     final typeResponse = typeResponseFromJson(jsonData);
 
     _convertNameUrlToPType(typeResponse.results);
@@ -42,6 +44,7 @@ class TypeProvider extends ChangeNotifier{
   }
 
     _convertNameUrlToPType(List<NameUrl> typesNameUrl) async {
+    print(typesNameUrl);
     var jsonData;
     NameUrl typeNameUrl;
     String typeName;
@@ -50,8 +53,10 @@ class TypeProvider extends ChangeNotifier{
       typeNameUrl = typesNameUrl[i];
       typeName = typeNameUrl.name;
 
-      jsonData = await _getJsonData('$_baseUrl/type/$typeName');
-      types[i] = pTypeFromJson(jsonData);
+      jsonData = await _getJsonData('type/$typeName');
+      types.add(pTypeFromJson(jsonData));
     }
+    getSpritesOfType();
+    print(types);
   }
 }

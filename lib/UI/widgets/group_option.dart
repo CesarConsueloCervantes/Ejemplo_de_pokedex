@@ -1,14 +1,12 @@
-import 'package:ejemplo_de_pokedex/UI/providers/providers.dart';
+import 'package:ejemplo_de_pokedex/UI/models/models.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class GroupOption extends StatelessWidget {
-  const GroupOption({super.key});
+  final List<PType> types;
+  const GroupOption({super.key, required this.types});
 
   @override
   Widget build(BuildContext context) {
-    final typeProvider = Provider.of<TypeProvider>(context, listen: false);
-    final types = typeProvider.types;
     return Flexible(
       fit: FlexFit.loose,
       child: ListView.builder(
