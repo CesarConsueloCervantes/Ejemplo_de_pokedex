@@ -13,7 +13,7 @@ class PokemonProvider extends ChangeNotifier{
   }
   
   Future<String> _getJsonData(String endpoint) async {
-    final url = Uri.https(_baseUrl, endpoint);
+    final url = Uri.https(_baseUrl, 'api/v2/$endpoint');
 
     final response = await http.get(url);
     return response.body;
