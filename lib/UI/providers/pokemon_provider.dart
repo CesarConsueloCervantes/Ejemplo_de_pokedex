@@ -1,11 +1,16 @@
 import 'package:ejemplo_de_pokedex/UI/models/models.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class PokemonProvider {
-    final String _baseUrl = 'https://pokeapi.co/api/v2';
+class PokemonProvider extends ChangeNotifier{
+    final String _baseUrl = 'pokeapi.co';
     final int _pageLimit = 40;
 
   Map<String, List<PMove>> pokemonMoves = {};
+
+  PokemonProvider(){
+    pokemonMoves;
+  }
   
   Future<String> _getJsonData(String endpoint) async {
     final url = Uri.https(_baseUrl, endpoint);
@@ -18,7 +23,7 @@ class PokemonProvider {
     List<NameUrl> pokemosNameUrl = [];
     
     for (var i = page; i < _pageLimit; i++) {
-        pokemosNameUrl[i] = tPokemons[i].pokemon;
+        pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 
     List<Pokemon> pokemons = await convertNameUrltoPokemons(pokemosNameUrl);
