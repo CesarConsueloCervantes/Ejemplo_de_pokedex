@@ -18,7 +18,7 @@ class PType {
     String name;
     List<TName> names;
     List<dynamic> pastDamageRelations;
-    List<TPokemon>? pokemon;
+    List<TPokemon> pokemon;
     TSprites sprites;
 
     PType({
@@ -31,7 +31,7 @@ class PType {
         required this.name,
         required this.names,
         required this.pastDamageRelations,
-        this.pokemon,
+        required this.pokemon,
         required this.sprites,
     });
 
@@ -45,7 +45,7 @@ class PType {
         name: json["name"],
         names: List<TName>.from(json["names"].map((x) => TName.fromJson(x))),
         pastDamageRelations: List<dynamic>.from(json["past_damage_relations"].map((x) => x)),
-        pokemon: (json["TPokemon"] as List?)?.map((x) => TPokemon.fromJson(x)).toList() ?? [],
+        pokemon: List<TPokemon>.from(json["pokemon"].map((x) => TPokemon.fromJson(x))) ,
         sprites: TSprites.fromJson(json["sprites"]),
     );
 }
@@ -117,7 +117,7 @@ class TPokemon {
     });
 
     factory TPokemon.fromJson(Map<String, dynamic> json) => TPokemon(
-        pokemon: NameUrl.fromJson(json["TPokemon"]),
+        pokemon: NameUrl.fromJson(json["pokemon"]),
         slot: json["slot"],
     );
 }

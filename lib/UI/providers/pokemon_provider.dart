@@ -7,6 +7,7 @@ class PokemonProvider extends ChangeNotifier{
     final int _pageLimit = 40;
 
   Map<String, List<PMove>> pokemonMoves = {};
+  List<NameUrl> pokemons = [];
 
   PokemonProvider(){
     pokemonMoves;
@@ -19,16 +20,24 @@ class PokemonProvider extends ChangeNotifier{
     return response.body;
   }
 
-  Future<List<Pokemon>> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0])async{
+  List<NameUrl> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0]){
     List<NameUrl> pokemosNameUrl = [];
     
     for (var i = page; i < _pageLimit; i++) {
         pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 
-    List<Pokemon> pokemons = await convertNameUrltoPokemons(pokemosNameUrl);
+    pokemons = pokemosNameUrl;
+    return pokemosNameUrl;
+  }
 
-    return pokemons;
+  Future<Pokemon> getPokemon(NameUrl pokemonNameUrl)async{
+
+    final jsonData = await _getJsonData('pokemon/${pokemonNameUrl.name}');
+    print(jsonData);
+    final pokemon = pokemonFromJson(jsonData);
+
+    return pokemon;
   }
 
   Future<List<Pokemon>> searchPokemons () async{
@@ -89,7 +98,7 @@ class PokemonProvider extends ChangeNotifier{
       nameMove = pMove.name;
 
       jsonData = await _getJsonData('move/$nameMove');
-      pMoves[i] = pMoveFromJson(jsonData);
+      pMoves.add(pMoveFromJson(jsonData));
     }
 
     return pMoves;

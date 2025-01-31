@@ -1,8 +1,9 @@
+import 'package:ejemplo_de_pokedex/UI/models/models.dart';
 import 'package:flutter/material.dart';
 
 class ResultCard extends StatelessWidget {
-  final int index;
-  const ResultCard({super.key, required this.index});
+  final Pokemon pokemon;
+  const ResultCard({super.key, required this.pokemon});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ResultCard extends StatelessWidget {
         border: Border.all(width: 1),
         image: DecorationImage(
           alignment: Alignment.centerRight,
-          image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10277.png'),
+          image: NetworkImage(pokemon.sprites.frontDefault),
           fit: BoxFit.contain
           ),
         borderRadius: BorderRadius.circular(10)
@@ -22,8 +23,8 @@ class ResultCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('N.° $index', style: Theme.of(context).textTheme.headlineSmall),
-          Text('option $index', style: Theme.of(context).textTheme.headlineMedium),
+          Text('N.° ${pokemon.id}', style: Theme.of(context).textTheme.headlineSmall),
+          Text(pokemon.name, style: Theme.of(context).textTheme.headlineMedium),
         //Text('Fletchinderssssssssssssssssssssssssssssssssssssssssssssss $index', style: Theme.of(context).textTheme.bodyLarge),
         ],
       )
