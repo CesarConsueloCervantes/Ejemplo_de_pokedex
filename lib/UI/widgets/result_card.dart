@@ -15,7 +15,7 @@ class ResultCard extends StatelessWidget {
         border: Border.all(width: 1),
         image: DecorationImage(
           alignment: Alignment.centerRight,
-          image: NetworkImage(pokemon.sprites.frontDefault),
+          image: NetworkImage(pokemon.sprites.frontDefault!),
           fit: BoxFit.contain
           ),
         borderRadius: BorderRadius.circular(10)
