@@ -52,22 +52,7 @@ class PokemonProvider extends ChangeNotifier{
     return pokemons;
   }
 
-  Future<List<PMove>> getPokemonMoves(String namePokemon)async{
-    List<PMove> pMoves;
 
-    final jsonData = await _getJsonData('pokemon/$namePokemon');
-    final pokemonMove = pokemonFromJson(jsonData);
-
-    if (pokemonMoves[namePokemon] !=null){
-      pMoves = pokemonMoves[namePokemon]!;
-    } else {
-    final List<Move> moves = pokemonMove.moves;
-      pMoves = await convertMovesToPmoves(moves);
-    pokemonMoves[namePokemon] = pMoves;
-    }
-
-    return pMoves;
-  }
 
   Future<List<Pokemon>> convertNameUrltoPokemons(List<NameUrl> nameUrlPokemons) async {
     List<Pokemon> pokemons = [];
@@ -86,23 +71,5 @@ class PokemonProvider extends ChangeNotifier{
     }
 
     return pokemons;
-  }
-
-  Future<List<PMove>> convertMovesToPmoves(List<Move> moves) async {
-    List<PMove> pMoves = [];
-
-    var jsonData;
-    NameUrl pMove;
-    String nameMove;
-
-    for (var i = 0; i < moves.length; i++) {
-      pMove = moves[i].move;
-      nameMove = pMove.name;
-
-      jsonData = await _getJsonData('move/$nameMove');
-      pMoves.add(pMoveFromJson(jsonData));
-    }
-
-    return pMoves;
   }
 }
