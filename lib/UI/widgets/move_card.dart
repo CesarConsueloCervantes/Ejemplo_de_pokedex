@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MoveCard extends StatelessWidget {
-  const MoveCard({super.key});
+  final String moveName;
+  final String type;
+  const MoveCard({super.key, required this.moveName, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class MoveCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Menacing Moonraz Maelstrom', style: Theme.of(context).textTheme.headlineSmall),
+          Text(moveName, style: Theme.of(context).textTheme.headlineSmall),
           Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png'))
         ],
       ),
