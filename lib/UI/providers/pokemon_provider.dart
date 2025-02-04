@@ -6,7 +6,7 @@ class PokemonProvider extends ChangeNotifier{
     final String _baseUrl = 'pokeapi.co';
     final int _pageLimit = 40;
 
-  Map<String, List<PMove>> pokemonMoves = {};
+  Map<String, PMove> pokemonMoves = {};
   Map<String, Pokemon> pokemons = {};
 
   PokemonProvider(){
@@ -52,7 +52,15 @@ class PokemonProvider extends ChangeNotifier{
     return pokemons;
   }
 
+  Future<PMove> getPMove(NameUrl move) async {
+    if(pokemonMoves.containsKey(move.name)) return pokemonMoves[move.name]!;
 
+    final jsonData = await _getJsonData('move/${move.name}');
+    final moveResponse = pMoveFromJson(jsonData);
+
+    pokemonMoves[move.name] = moveResponse;
+    return moveResponse;
+  }
 
   Future<List<Pokemon>> convertNameUrltoPokemons(List<NameUrl> nameUrlPokemons) async {
     List<Pokemon> pokemons = [];
