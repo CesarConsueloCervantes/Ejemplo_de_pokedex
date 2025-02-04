@@ -34,14 +34,15 @@ class ResultsScreen extends StatelessWidget {
                   child: const Text("No data"),
                 );
               }
+              
               Pokemon pokemon = snapshot.data!;
 
               return ResultCard(pokemon: pokemon);
             }
           ),
-          onTap: () => Navigator.pushNamed(context, 'details'),
+          onTap: () => Navigator.pushNamed(context, 'details', arguments: pokemonProvider.pokemons[pokemons[index].name]),
         ),
-        itemCount: 40,
+        itemCount: pokemons.length,
       ),
     );
   }

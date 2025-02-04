@@ -1,21 +1,26 @@
+import 'package:ejemplo_de_pokedex/UI/models/models.dart';
+import 'package:ejemplo_de_pokedex/UI/providers/pokemon_provider.dart';
 import 'package:ejemplo_de_pokedex/UI/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Pokemon pokemon = ModalRoute.of(context)!.settings.arguments as Pokemon;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pokemon'),
+        title: Text(pokemon.name),
       ),
       body: SingleChildScrollView(
          child: Column(
            children: [
-            Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10050.png')),
-            StatsPokemon(),
-            SetMoves()
+            Image(image: NetworkImage(pokemon.sprites.other!.officialArtwork.frontDefault!)),
+            StatsPokemon(stats: pokemon.stats),
+            SetMoves(moves: pokemon.moves)
           ],
         )
       )
@@ -24,8 +29,10 @@ class DetailsScreen extends StatelessWidget {
 }
 
 class StatsPokemon extends StatelessWidget {
+  final List<Stat> stats;
   const StatsPokemon({
     super.key,
+    required this.stats
   });
 
   @override
@@ -38,17 +45,17 @@ class StatsPokemon extends StatelessWidget {
           children: [
             Column(
               children: [
-                StatsCard(statname: 'HP', stat: '123', color: const Color.fromARGB(255, 255, 0, 0)),
-                StatsCard(statname: 'Atack', stat: '12', color: const Color.fromARGB(255, 240,128,48)),
-                StatsCard(statname: 'Defence', stat: '23', color: const Color.fromARGB(255, 248,208,48)),
+                StatsCard(statname: 'HP', stat: '${stats[0].baseStat}', color: const Color.fromARGB(255, 255, 0, 0)),
+                StatsCard(statname: 'Atack', stat: '${stats[1].baseStat}', color: const Color.fromARGB(255, 240,128,48)),
+                StatsCard(statname: 'Defence', stat: '${stats[2].baseStat}', color: const Color.fromARGB(255, 248,208,48)),
               ],
             ),
             SizedBox(width: 10),
             Column(
               children: [
-                StatsCard(statname: 'S-Atack', stat: '34', color: const Color.fromARGB(255, 104,144,240)),
-                StatsCard(statname: 'S-Defence', stat: '45', color: const Color.fromARGB(255, 120,200,80)),
-                StatsCard(statname: 'Speed', stat: '56', color: const Color.fromARGB(255, 248,88,136)),
+                StatsCard(statname: 'S-Atack', stat: '${stats[3].baseStat}', color: const Color.fromARGB(255, 104,144,240)),
+                StatsCard(statname: 'S-Defence', stat: '${stats[4].baseStat}', color: const Color.fromARGB(255, 120,200,80)),
+                StatsCard(statname: 'Speed', stat: '${stats[5].baseStat}', color: const Color.fromARGB(255, 248,88,136)),
               ],
             )
           ],
@@ -61,12 +68,15 @@ class StatsPokemon extends StatelessWidget {
 }
 
 class SetMoves extends StatelessWidget {
+  final List<Move> moves;
   const SetMoves({
     super.key,
+    required this.moves
   });
 
   @override
   Widget build(BuildContext context) {
+    final pokemonProvider = Provider.of<PokemonProvider>(context);
     return Column(
       children: [
         Text('Set Moves',style: Theme.of(context).textTheme.displayMedium),
@@ -74,9 +84,30 @@ class SetMoves extends StatelessWidget {
           height: 700,
           child: ListView.builder(
             itemBuilder: (context, index) => ListTile(
-              title: MoveCard(index: index,),
+              title: FutureBuilder(
+                future: pokemonProvider.getPMove(moves[index].move),
+                builder: (_, AsyncSnapshot<PMove> snapshot){
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      constraints: const BoxConstraints(maxWidth: 100),
+                      height: 100,
+                      child: const CupertinoActivityIndicator(),
+                    );
+                  } else if (!snapshot.hasData) {
+                    return Container(
+                      constraints: const BoxConstraints(maxWidth: 100),
+                      height: 75,
+                      child: const Text("No data"),
+                    );
+                  }
+
+                  PMove move = snapshot.data!;
+
+                  return MoveCard(moveName: move.name, type: move.type.name);
+                }
+              ),
             ),
-            itemCount: 20,
+            itemCount: moves.length,
           ),
         )
       ],

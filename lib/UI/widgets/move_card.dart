@@ -1,11 +1,15 @@
+import 'package:ejemplo_de_pokedex/UI/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MoveCard extends StatelessWidget {
-  final int index;
-  const MoveCard({super.key, required this.index});
+  final String moveName;
+  final String type;
+  const MoveCard({super.key, required this.moveName, required this.type});
 
   @override
   Widget build(BuildContext context) {
+    final typeProvider = Provider.of<TypeProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
@@ -18,22 +22,10 @@ class MoveCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Menacing Moonraz Maelstrom', style: Theme.of(context).textTheme.headlineSmall),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 10,
-            children: getImages(index),
-          )
+          Text(moveName, style: Theme.of(context).textTheme.headlineSmall),
+          Image(image: NetworkImage(typeProvider.sprites[type]!))
         ],
       ),
     );
   }
-}
-
-List<Widget> getImages(int index) {
-  List<Widget> _images = [];
-  _images.add(Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png')));
-  //TODO poner Types.leng != 2
-  if(index==2||index==4) _images.add(Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png')));
-  return _images;
 }

@@ -4,13 +4,13 @@ import 'package:http/http.dart' as http;
 
 class PokemonProvider extends ChangeNotifier{
     final String _baseUrl = 'pokeapi.co';
-    final int _pageLimit = 40;
 
-  Map<String, List<PMove>> pokemonMoves = {};
-  List<NameUrl> pokemons = [];
+  Map<String, PMove> pokemonMoves = {};
+  Map<String, Pokemon> pokemons = {};
 
   PokemonProvider(){
     pokemonMoves;
+    pokemons;
   }
   
   Future<String> _getJsonData(String endpoint) async {
@@ -23,20 +23,21 @@ class PokemonProvider extends ChangeNotifier{
   List<NameUrl> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0]){
     List<NameUrl> pokemosNameUrl = [];
     
-    for (var i = page; i < _pageLimit; i++) {
+    for (var i = page; i < tPokemons.length; i++) {
         pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 
-    pokemons = pokemosNameUrl;
     return pokemosNameUrl;
   }
 
   Future<Pokemon> getPokemon(NameUrl pokemonNameUrl)async{
+    if (pokemons.containsKey(pokemonNameUrl.name)) return pokemons[pokemonNameUrl.name]!;
 
     final jsonData = await _getJsonData('pokemon/${pokemonNameUrl.name}');
     print(jsonData);
     final pokemon = pokemonFromJson(jsonData);
 
+    pokemons[pokemon.name] = pokemon;
     return pokemon;
   }
 
@@ -50,21 +51,14 @@ class PokemonProvider extends ChangeNotifier{
     return pokemons;
   }
 
-  Future<List<PMove>> getPokemonMoves(String namePokemon)async{
-    List<PMove> pMoves;
+  Future<PMove> getPMove(NameUrl move) async {
+    if(pokemonMoves.containsKey(move.name)) return pokemonMoves[move.name]!;
 
-    final jsonData = await _getJsonData('pokemon/$namePokemon');
-    final pokemonMove = pokemonFromJson(jsonData);
+    final jsonData = await _getJsonData('move/${move.name}');
+    final moveResponse = pMoveFromJson(jsonData);
 
-    if (pokemonMoves[namePokemon] !=null){
-      pMoves = pokemonMoves[namePokemon]!;
-    } else {
-    final List<Move> moves = pokemonMove.moves;
-      pMoves = await convertMovesToPmoves(moves);
-    pokemonMoves[namePokemon] = pMoves;
-    }
-
-    return pMoves;
+    pokemonMoves[move.name] = moveResponse;
+    return moveResponse;
   }
 
   Future<List<Pokemon>> convertNameUrltoPokemons(List<NameUrl> nameUrlPokemons) async {
@@ -84,23 +78,5 @@ class PokemonProvider extends ChangeNotifier{
     }
 
     return pokemons;
-  }
-
-  Future<List<PMove>> convertMovesToPmoves(List<Move> moves) async {
-    List<PMove> pMoves = [];
-
-    var jsonData;
-    NameUrl pMove;
-    String nameMove;
-
-    for (var i = 0; i < moves.length; i++) {
-      pMove = moves[i].move;
-      nameMove = pMove.name;
-
-      jsonData = await _getJsonData('move/$nameMove');
-      pMoves.add(pMoveFromJson(jsonData));
-    }
-
-    return pMoves;
   }
 }

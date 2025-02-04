@@ -27,6 +27,7 @@ class TypeProvider extends ChangeNotifier{
     final typeResponse = typeResponseFromJson(jsonData);
 
     _convertNameUrlToPType(typeResponse.results);
+    getSpritesOfType();
     notifyListeners();
   }
 
