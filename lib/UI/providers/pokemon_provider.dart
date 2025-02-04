@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 
 class PokemonProvider extends ChangeNotifier{
     final String _baseUrl = 'pokeapi.co';
-    final int _pageLimit = 40;
 
   Map<String, PMove> pokemonMoves = {};
   Map<String, Pokemon> pokemons = {};
@@ -24,7 +23,7 @@ class PokemonProvider extends ChangeNotifier{
   List<NameUrl> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0]){
     List<NameUrl> pokemosNameUrl = [];
     
-    for (var i = page; i < _pageLimit; i++) {
+    for (var i = page; i < tPokemons.length; i++) {
         pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 

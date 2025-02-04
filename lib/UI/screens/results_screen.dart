@@ -42,7 +42,7 @@ class ResultsScreen extends StatelessWidget {
           ),
           onTap: () => Navigator.pushNamed(context, 'details', arguments: pokemonProvider.pokemons[pokemons[index].name]),
         ),
-        itemCount: 40,
+        itemCount: pokemons.length,
       ),
     );
   }
