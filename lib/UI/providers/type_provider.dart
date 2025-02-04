@@ -18,7 +18,6 @@ class TypeProvider extends ChangeNotifier{
 
     print(url);
     final response = await http.get(url);
-    print(response.body);
     return response.body;
   }
 
@@ -44,19 +43,18 @@ class TypeProvider extends ChangeNotifier{
   }
 
     _convertNameUrlToPType(List<NameUrl> typesNameUrl) async {
-    print(typesNameUrl);
     var jsonData;
     NameUrl typeNameUrl;
     String typeName;
 
-    for (var i = 0; i < typesNameUrl.length; i++) {
+    for (var i = 0; i < 18; i++) {
       typeNameUrl = typesNameUrl[i];
       typeName = typeNameUrl.name;
 
       jsonData = await _getJsonData('type/$typeName');
-      types.add(pTypeFromJson(jsonData));
+      final typeResponse =pTypeFromJson(jsonData);
+      types.add(typeResponse);
     }
     getSpritesOfType();
-    print(types);
   }
 }

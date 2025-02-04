@@ -1,29 +1,43 @@
 import 'package:ejemplo_de_pokedex/UI/models/models.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class PokemonProvider {
-    final String _baseUrl = 'https://pokeapi.co/api/v2';
+class PokemonProvider extends ChangeNotifier{
+    final String _baseUrl = 'pokeapi.co';
     final int _pageLimit = 40;
 
   Map<String, List<PMove>> pokemonMoves = {};
+  List<NameUrl> pokemons = [];
+
+  PokemonProvider(){
+    pokemonMoves;
+  }
   
   Future<String> _getJsonData(String endpoint) async {
-    final url = Uri.https(_baseUrl, endpoint);
+    final url = Uri.https(_baseUrl, 'api/v2/$endpoint');
 
     final response = await http.get(url);
     return response.body;
   }
 
-  Future<List<Pokemon>> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0])async{
+  List<NameUrl> getPokemonsInType(List<TPokemon> tPokemons, [int page = 0]){
     List<NameUrl> pokemosNameUrl = [];
     
     for (var i = page; i < _pageLimit; i++) {
-        pokemosNameUrl[i] = tPokemons[i].pokemon;
+        pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 
-    List<Pokemon> pokemons = await convertNameUrltoPokemons(pokemosNameUrl);
+    pokemons = pokemosNameUrl;
+    return pokemosNameUrl;
+  }
 
-    return pokemons;
+  Future<Pokemon> getPokemon(NameUrl pokemonNameUrl)async{
+
+    final jsonData = await _getJsonData('pokemon/${pokemonNameUrl.name}');
+    print(jsonData);
+    final pokemon = pokemonFromJson(jsonData);
+
+    return pokemon;
   }
 
   Future<List<Pokemon>> searchPokemons () async{
@@ -84,7 +98,7 @@ class PokemonProvider {
       nameMove = pMove.name;
 
       jsonData = await _getJsonData('move/$nameMove');
-      pMoves[i] = pMoveFromJson(jsonData);
+      pMoves.add(pMoveFromJson(jsonData));
     }
 
     return pMoves;

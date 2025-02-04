@@ -21,7 +21,7 @@ class GroupOption extends StatelessWidget {
             ),
             child:Text(types[index].name, style: Theme.of(context).textTheme.bodyLarge),
             ),
-            onTap: () => Navigator.pushNamed(context, 'results', arguments: index),
+            onTap: () => Navigator.pushNamed(context, 'results', arguments: types[index]),
           ),
         itemCount: types.length
       ),
