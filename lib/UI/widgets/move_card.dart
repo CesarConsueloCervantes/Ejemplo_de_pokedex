@@ -1,4 +1,6 @@
+import 'package:ejemplo_de_pokedex/UI/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MoveCard extends StatelessWidget {
   final String moveName;
@@ -7,6 +9,7 @@ class MoveCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final typeProvider = Provider.of<TypeProvider>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       width: double.infinity,
@@ -20,7 +23,7 @@ class MoveCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(moveName, style: Theme.of(context).textTheme.headlineSmall),
-          Image(image: NetworkImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/brilliant-diamond-and-shining-pearl/1.png'))
+          Image(image: NetworkImage(typeProvider.sprites[type]!))
         ],
       ),
     );
