@@ -7,10 +7,11 @@ class PokemonProvider extends ChangeNotifier{
     final int _pageLimit = 40;
 
   Map<String, List<PMove>> pokemonMoves = {};
-  List<NameUrl> pokemons = [];
+  Map<String, Pokemon> pokemons = {};
 
   PokemonProvider(){
     pokemonMoves;
+    pokemons;
   }
   
   Future<String> _getJsonData(String endpoint) async {
@@ -27,16 +28,17 @@ class PokemonProvider extends ChangeNotifier{
         pokemosNameUrl.add(tPokemons[i].pokemon);
     }
 
-    pokemons = pokemosNameUrl;
     return pokemosNameUrl;
   }
 
   Future<Pokemon> getPokemon(NameUrl pokemonNameUrl)async{
+    if (pokemons.containsKey(pokemonNameUrl.name)) return pokemons[pokemonNameUrl.name]!;
 
     final jsonData = await _getJsonData('pokemon/${pokemonNameUrl.name}');
     print(jsonData);
     final pokemon = pokemonFromJson(jsonData);
 
+    pokemons[pokemon.name] = pokemon;
     return pokemon;
   }
 
