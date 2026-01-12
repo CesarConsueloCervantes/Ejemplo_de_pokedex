@@ -1,6 +1,20 @@
 # Ejemplo de Pokédex
 
-Una aplicación Flutter de ejemplo que simula una Pokédex, permitiendo explorar tipos de Pokémon, ver resultados y detalles de Pokémon individuales. Utiliza la API de PokeAPI para obtener datos en tiempo real.
+Aplicación desarrollada de manera individual como proyecto personal de práctica,
+con el objetivo de aplicar conceptos de desarrollo móvil con Flutter y consumo
+de APIs REST públicas.
+
+## Desarrollo del proyecto
+- Diseño y desarrollo completo de la aplicación
+- Implementación de navegación y pantallas
+- Consumo de la API pública PokeAPI
+- Gestión de estado con Provider
+- Creación de widgets reutilizables
+
+## Fuente de datos
+
+La aplicación consume datos desde la API pública PokeAPI (https://pokeapi.co/)
+utilizada únicamente con fines educativos y de práctica.
 
 ## Características
 
@@ -78,4 +92,3 @@ windows/                       # Configuración para Windows
 - Selecciona un grupo de tipos para ver resultados.
 - Toca en un resultado para ver detalles del Pokémon.
 - Navega entre pantallas usando el AppBar y botones.
-
