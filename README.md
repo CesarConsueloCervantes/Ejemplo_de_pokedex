@@ -2,7 +2,8 @@
 
 Aplicación desarrollada de manera individual como proyecto personal de práctica,
 con el objetivo de aplicar conceptos de desarrollo móvil con Flutter y consumo
-de APIs REST públicas.
+de APIs REST públicas. El desarrollo fue realizado bajo supervisión técnica
+durante un periodo de prácticas profesionales.
 
 ## Desarrollo del proyecto
 - Diseño y desarrollo completo de la aplicación
